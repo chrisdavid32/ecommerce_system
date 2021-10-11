@@ -108,7 +108,7 @@
 			</a>
 			<ul class="dropdown-menu animated flipInX">
 			  <li class="user-body">
-				 <a class="dropdown-item" href="#"><i class="mr-2 ti-user text-muted"></i> Profile</a>
+				 <a class="dropdown-item" href="{{ route('admin.profile')}}"><i class="mr-2 ti-user text-muted"></i> Profile</a>
 				 <a class="dropdown-item" href="#"><i class="mr-2 ti-wallet text-muted"></i> My Wallet</a>
 				 <a class="dropdown-item" href="#"><i class="mr-2 ti-settings text-muted"></i> Settings</a>
 				 <div class="dropdown-divider"></div>

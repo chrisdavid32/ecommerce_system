@@ -14,7 +14,8 @@
 			<!-- /.box-header -->
 						<div class="box-body">
 
-												<form novalidate="">
+												<form action="{{ route('admin.profile_store')}}" method="post" enctype="multipart/form-data">
+													@csrf
 																<div class="row">
 																					<div class="col-md-6" >
 																					<div class="form-group">
@@ -38,7 +39,7 @@
 															<div class="form-group">
 															<h5>File Input Field <span class="text-danger">*</span></h5>
 															<div class="controls">
-																<input type="file" name="file" class="form-control" id="image" required=""> 
+																<input type="file" name="profile_photo_path" class="form-control" id="image" > 
 															</div>
 															</div>
 																	</div>

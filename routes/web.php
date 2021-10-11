@@ -35,6 +35,9 @@ Route::get('/admin/profile', [AdminProfileController::class, 'adminProfile'])->n
 
 Route::get('/admin/profile/edit', [AdminProfileController::class, 'adminProfileEdit'])->name('admin.profile_edit');
 
+Route::post('/admin/profile/store', [AdminProfileController::class, 'adminProfileStore'])->name('admin.profile_store');
+
+
 
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {

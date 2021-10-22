@@ -9,13 +9,17 @@
     <link rel="icon" href="{{ asset ('backend/images/favicon.ico') }}">
 
     <title>Easy Ecommerce Admin - Dashboard</title>
-    {{ asset ('backend/images/favicon.ico')}}
+    
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="{{ asset ('backend/css/vendors_css.css') }}">
 	  
 	<!-- Style-->  
 	<link rel="stylesheet" href="{{ asset ('backend/css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset ('backend/css/skin_color.css') }}">
+	<link rel="stylesheet" href="{{ asset ('backend/css/toastr.less') }}">
+	<link rel="stylesheet" href="{{ asset ('backend/css/toastr.scss') }}">
+
+  
      
   </head>
 
@@ -58,6 +62,32 @@
 	<!-- Sunny Admin App -->
 	<script src="{{ asset ('backend/js/template.js') }}"></script>
 	<script src="{{ asset ('backend/js/pages/dashboard.js') }}"></script>
+	<script src="{{ asset ('backend/js/toastr.js') }}"></script>
+
+  <script>
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info')}}"
+    switch(type){
+      case 'info':
+        toastr.info("{{Session::get('message')}}");
+      break;
+
+      case 'success':
+       toastr.success("{{Session::get('message')}}");
+      break;
+      
+       case 'warning':
+       toastr.warning("{{Session::get('message')}}");
+      break;
+
+      case 'error':
+       toastr.error("{{Session::get('message')}}");
+      break;
+    }
+    @endif
+  </script>
+
+
 	
 	
 </body>

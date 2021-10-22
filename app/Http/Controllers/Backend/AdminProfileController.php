@@ -45,6 +45,6 @@ class AdminProfileController extends Controller
 
     public function adminChangePassword()
     {
-        return view()
+        return view('admin.admin_change_password');
     }
 }

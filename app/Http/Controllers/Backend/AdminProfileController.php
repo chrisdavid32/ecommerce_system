@@ -36,6 +36,23 @@ class AdminProfileController extends Controller
             $data['profile_photo_path'] = $fileName;
         }
         $data->save();
-        return redirect()->route('admin.profile');
+        $notification = array(
+            'message' => 'Admin profile updated successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.profile')->with($notification);
+    }
+
+    public function adminChangePassword()
+    {
+        return view('admin.admin_change_password');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $validateData = $request->validate([
+            'oldpassword' => 'required',
+            'password' => 'required|confirmed'
+        ]);
     }
 }

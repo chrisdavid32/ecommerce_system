@@ -18,6 +18,11 @@
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "postcss-import": "^14.0.1",
-        "tailwindcss": "^2.2.2"
-    }
+        "resolve-url-loader": "^4.0.0",
+        "sass": "^1.43.2",
+        "sass-loader": "^12.1.0",
+        "tailwindcss": "^2.2.2",
+        "toastr": "^2.1.4"
+    },
+    "dependencies": {}
 }

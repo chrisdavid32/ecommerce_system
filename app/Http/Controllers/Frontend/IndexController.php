@@ -38,16 +38,16 @@ class IndexController extends Controller
         //dd($newName);
         if ($request->file('profile_photo_path')) {
             $file = $request->file('profile_photo_path');
-            @unlink(public_path('upload/admin_image/' . $data->profile_photo_path));
+            // @unlink(public_path('upload/admin_image/' . $data->profile_photo_path));
             $fileName = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/admin_image'), $fileName);
+            $file->move(public_path('upload/user_image'), $fileName);
             $data['profile_photo_path'] = $fileName;
         }
         $data->save();
         $notification = array(
-            'message' => 'Admin profile updated successfully',
+            'message' => 'User profile updated successfully',
             'alert-type' => 'success'
         );
-        return redirect()->route('admin.profile')->with($notification);
+        return redirect()->route('dashboard')->with($notification);
     }
 }

@@ -39,7 +39,7 @@
                       </div>
                       <div class="form-group">
                          <label class="info-title" for="exampleInputEmail1">User Image</label>
-                         <input type="file" class="form-control" name="file" value="{{ $user->phone}}" >
+                         <input type="file" class="form-control" name="profile_photo_path">
                       </div>
                       <div class="mt-3 form-group">
                        <button type="submit" class="btn btn-success">Update Profile</button>

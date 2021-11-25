@@ -1,10 +1,12 @@
 <?php
 
 use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use app\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,7 @@ Route::group(['prefix' => 'admin', 'Middleware' => ['admin:admin']], function ()
 });
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('admin/dashboard', function () {
+
     return view('admin.index');
 })->name('dashboard');
 
@@ -43,11 +46,18 @@ Route::get('/admin/change/password', [AdminProfileController::class, 'adminChang
 
 Route::post('/admin/update/password', [AdminProfileController::class, 'updatePassword'])->name('update_password');
 
+Route::get('/user/logout', [IndexController::class, 'userLogout'])->name('user.logout');
+Route::get('/user/profile', [IndexController::class, 'userProfile'])->name('user.profile');
+Route::post('/update/user/profile', [IndexController::class, 'store'])->name('user.profile.store');
+
+
 Route::get('/', [IndexController::class, 'index']);
 
 
 
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $id = Auth::user()->id;
+    $user = User::find($id);
+    return view('dashboard', compact('user'));
 })->name('dashboard');

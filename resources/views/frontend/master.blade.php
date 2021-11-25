@@ -31,6 +31,8 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body class="cnt-home">
+ 	<link rel="stylesheet" href="{{ asset ('backend/css/toastr.less') }}">
+	<link rel="stylesheet" href="{{ asset ('backend/css/toastr.scss') }}">
 <!-- ============================================== HEADER ============================================== -->
 @include('frontend.body.header')
 
@@ -59,5 +61,29 @@
 <script src="{{ ('frontend/assets/js/bootstrap-select.min.js') }}"></script> 
 <script src="{{ ('frontend/assets/js/wow.min.js') }}"></script> 
 <script src="{{ ('frontend/assets/js/scripts.js') }}"></script>
+<script src="{{ asset ('backend/js/toastr.js') }}"></script>
+
+  <script>
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info')}}"
+    switch(type){
+      case 'info':
+        toastr.info("{{Session::get('message')}}");
+      break;
+
+      case 'success':
+       toastr.success("{{Session::get('message')}}");
+      break;
+      
+       case 'warning':
+       toastr.warning("{{Session::get('message')}}");
+      break;
+
+      case 'error':
+       toastr.error("{{Session::get('message')}}");
+      break;
+    }
+    @endif
+  </script>
 </body>
 </html>

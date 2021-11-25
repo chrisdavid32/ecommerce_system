@@ -43,6 +43,11 @@ Route::get('/admin/change/password', [AdminProfileController::class, 'adminChang
 
 Route::post('/admin/update/password', [AdminProfileController::class, 'updatePassword'])->name('update_password');
 
+Route::get('/user/logout', [IndexController::class, 'userLogout'])->name('user.logout');
+Route::get('/user/profile', [IndexController::class, 'userProfile'])->name('user.profile');
+Route::post('/update/user/profile', [IndexController::class, 'store'])->name('user.profile.store');
+
+
 Route::get('/', [IndexController::class, 'index']);
 
 

@@ -53,6 +53,8 @@ class IndexController extends Controller
 
     public function changePassword()
     {
-        return view('frontend.profile.change_password');
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        return view('frontend.profile.change_password', compact('user'));
     }
 }

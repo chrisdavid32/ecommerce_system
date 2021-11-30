@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class IndexController extends Controller
 {
@@ -49,5 +50,34 @@ class IndexController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('dashboard')->with($notification);
+    }
+
+    public function changePassword()
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        return view('frontend.profile.change_password', compact('user'));
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $validateData = $request->validate([
+            'oldpassword' => 'required',
+            'password' => 'required|confirmed'
+        ]);
+        $hashPassword = Auth::user()->password;
+        if (Hash::check($request->oldpassword, $hashPassword)) {
+            $user = User::find(Auth::id());
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::logout();
+            $notification = array(
+                'message' => 'Password updated successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('user.logout')->with($notification);
+        } else {
+            return redirect()->back();
+        }
     }
 }

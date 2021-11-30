@@ -23,7 +23,7 @@
                 <div class="card">
                     <h3 class="text-center"><span class="text-danger">Change Password</span></strong></h3>
                     <div class="card-body">
-                     <form method="POST" action="{{route('user.profile.store')}}" enctype="multipart/form-data">
+                     <form method="POST" action="{{route('user.password.update')}}">
                       @csrf
                       <div class="form-group">
                          <label class="info-title" for="exampleInputEmail1">Current Password</label>
@@ -35,7 +35,7 @@
                       </div>
                       <div class="form-group">
                          <label class="info-title" for="exampleInputEmail1">Confirm Password</label>
-                         <input type="text" class="form-control" id="password_confirmation" name="password_confirmation">
+                         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                       </div>
                       <div class="mt-3 form-group">
                        <button type="submit" class="btn btn-success">Update</button>

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\brandController;
 use app\Models\User;
 
 /*
@@ -51,6 +52,11 @@ Route::get('/user/profile', [IndexController::class, 'userProfile'])->name('user
 Route::post('/update/user/profile', [IndexController::class, 'store'])->name('user.profile.store');
 Route::get('/user/change/password', [IndexController::class, 'changePassword'])->name('change.password');
 Route::post('/user/password/update', [IndexController::class, 'updatePassword'])->name('user.password.update');
+
+//admid brand route
+Route::prefix('brand')->group(function () {
+    Route::get('/view', [brandController::class, 'brandView'])->name('all.brand');
+});
 
 
 

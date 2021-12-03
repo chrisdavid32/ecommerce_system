@@ -27,14 +27,14 @@
         <li class="treeview">
           <a href="#">
             <i data-feather="message-circle"></i>
-            <span>Brand</span>
+            <span>Brands</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{}}"><i class="ti-more"></i>All brand</a></li>
-            <li><a href="calendar.html"><i class="ti-more"></i>Calendar</a></li>
+            <li><a href="{{route('all.brand')}}"><i class="ti-more"></i>All brand</a></li>
+            
           </ul>
         </li> 
 		  

@@ -56,6 +56,7 @@ Route::post('/user/password/update', [IndexController::class, 'updatePassword'])
 //admid brand route
 Route::prefix('brand')->group(function () {
     Route::get('/view', [brandController::class, 'brandView'])->name('all.brand');
+    Route::get('/store', [brandController::class, 'brandStore'])->name('brand.store');
 });
 
 

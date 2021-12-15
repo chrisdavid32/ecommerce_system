@@ -58,6 +58,7 @@ Route::prefix('brand')->group(function () {
     Route::get('/view', [brandController::class, 'brandView'])->name('all.brand');
     Route::post('/store', [brandController::class, 'brandStore'])->name('brand.store');
     Route::get('/edit/{id}', [brandController::class, 'brandEdit'])->name('brand.edit');
+    Route::post('/update', [brandController::class, 'brandUpdate'])->name('brand.update');
 });
 
 

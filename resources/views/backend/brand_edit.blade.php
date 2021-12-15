@@ -17,8 +17,10 @@
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					<form action="{{ route('brand.store')}}" method="post" enctype="multipart/form-data">
+					<form action="{{ route('brand.update',$brand->id)}}" method="post" enctype="multipart/form-data">
        @csrf
+       <input type="hidden" name="id" value="{{ $brand->id}}">
+       <input type="hidden" name="old_image" value="{{ $brand->brand_image}}">
         <div class="form-group">
           <h5>Brand Name English <span class="text-danger">*</span></h5>
           <div class="controls">

@@ -65,7 +65,7 @@ Route::prefix('brand')->group(function () {
 
 //Admid Categories Route
 Route::prefix('category')->group(function () {
-    Route::get('/view', [categoryContoller::class, 'brandView'])->name('all.brand');
+    Route::get('/view', [categoryContoller::class, 'categoryView'])->name('all.category');
     Route::post('/store', [brandController::class, 'brandStore'])->name('brand.store');
     Route::get('/edit/{id}', [brandController::class, 'brandEdit'])->name('brand.edit');
     Route::post('/update', [brandController::class, 'brandUpdate'])->name('brand.update');

@@ -66,10 +66,10 @@ Route::prefix('brand')->group(function () {
 //Admid Categories Route
 Route::prefix('category')->group(function () {
     Route::get('/view', [categoryContoller::class, 'categoryView'])->name('all.category');
-    // Route::post('/store', [brandController::class, 'brandStore'])->name('brand.store');
-    // Route::get('/edit/{id}', [brandController::class, 'brandEdit'])->name('brand.edit');
-    // Route::post('/update', [brandController::class, 'brandUpdate'])->name('brand.update');
-    // Route::get('/delete/{id}', [brandController::class, 'brandDelete'])->name('brand.delete');
+    Route::post('/store', [categoryContoller::class, 'categoryStore'])->name('category.store');
+    Route::get('/edit/{id}', [brandController::class, 'brandEdit'])->name('brand.edit');
+    Route::post('/update', [brandController::class, 'brandUpdate'])->name('brand.update');
+    Route::get('/delete/{id}', [brandController::class, 'brandDelete'])->name('brand.delete');
 });
 
 

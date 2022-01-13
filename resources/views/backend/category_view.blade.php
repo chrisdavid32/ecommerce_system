@@ -17,31 +17,31 @@
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					<form action="{{ route('brand.store')}}" method="post" enctype="multipart/form-data">
+					<form action="{{ route('category.store')}}" method="post" enctype="multipart/form-data">
        @csrf
         <div class="form-group">
-          <h5>Brand Name English <span class="text-danger">*</span></h5>
+          <h5>Category Name English <span class="text-danger">*</span></h5>
           <div class="controls">
-          <input type="text" name="brand_en"  class="form-control">
-          @error('brand_en')
+          <input type="text" name="category_en"  class="form-control">
+          @error('category_en')
              <span class="text-danger">{{ $message }}</span> 
           @enderror
            </div>
          </div>
          <div class="form-group">
-            <h5>Brand Name Hindi <span class="text-danger">*</span></h5>
+            <h5>Category Name Hindi <span class="text-danger">*</span></h5>
             <div class="controls">
-            <input type="text" name="brand_hin"  class="form-control">
-            @error('brand_hin')
+            <input type="text" name="category_hin"  class="form-control">
+            @error('category_hin')
              <span class="text-danger">{{ $message }}</span> 
             @enderror
             </div>
           </div>
           <div class="form-group">
-           <h5>Brand Image <span class="text-danger">*</span></h5>
+           <h5>Category Icon <span class="text-danger">*</span></h5>
            <div class="controls">
-           <input type="file" name="brand_image" class="form-control">
-           @error('brand_image')
+           <input type="text" name="caterogy_icon" class="form-control">
+           @error('caterogy_icon')
              <span class="text-danger">{{ $message }}</span> 
            @enderror
             </div>
@@ -78,19 +78,19 @@
 								</tr>
 						</thead>
 						<tbody>
-       {{-- @foreach ($category as $item )
+       @foreach ($category as $item )
         
        
 							<tr>
-        <td> <span> <i class="{{asset($item->category_icon)}}"></i></span></td>
+        <td> <span> <i class="{{$item->caterogy_icon}}"></i></span></td>
 								<td>{{ $item->category_name_en}}</td>
 								<td>{{ $item->category_name_hin}}</td>
 								<td>
-         {{-- <a href="{{ route('brand.edit',$item->id)}}" class="btn btn-info">Edit</a>
-         <a href="{{ route('brand.delete',$item->id)}}" class="btn btn-danger" id="delete">Delete</a> --}}
+         <a href="{{ route('brand.edit',$item->id)}}" class="btn btn-info">Edit</a>
+         <a href="{{ route('brand.delete',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
         </td>
 								</tr>
-        @endforeach --}}
+        @endforeach
 		
 						</tbody>
 					</table>

@@ -67,9 +67,9 @@ Route::prefix('brand')->group(function () {
 Route::prefix('category')->group(function () {
     Route::get('/view', [categoryContoller::class, 'categoryView'])->name('all.category');
     Route::post('/store', [categoryContoller::class, 'categoryStore'])->name('category.store');
-    Route::get('/edit/{id}', [brandController::class, 'brandEdit'])->name('brand.edit');
-    Route::post('/update', [brandController::class, 'brandUpdate'])->name('brand.update');
-    Route::get('/delete/{id}', [brandController::class, 'brandDelete'])->name('brand.delete');
+    Route::get('/edit/{id}', [categoryContoller::class, 'categoryEdit'])->name('category.edit');
+    Route::post('/update', [categoryContoller::class, 'categoryUpdate'])->name('category.update');
+    Route::get('/delete/{id}', [categoryContoller::class, 'categoryDelete'])->name('category.delete');
 });
 
 

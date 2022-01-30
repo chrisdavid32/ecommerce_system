@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\brandController;
 use App\Http\Controllers\Backend\categoryContoller;
+use App\Http\Controllers\backend\subCategoryController;
 use app\Models\User;
 
 /*
@@ -63,7 +64,7 @@ Route::prefix('brand')->group(function () {
     Route::get('/delete/{id}', [brandController::class, 'brandDelete'])->name('brand.delete');
 });
 
-//Admid Categories Route
+//Admin Categories Route
 Route::prefix('category')->group(function () {
     Route::get('/view', [categoryContoller::class, 'categoryView'])->name('all.category');
     Route::post('/store', [categoryContoller::class, 'categoryStore'])->name('category.store');
@@ -71,6 +72,13 @@ Route::prefix('category')->group(function () {
     Route::post('/update', [categoryContoller::class, 'categoryUpdate'])->name('category.update');
     Route::get('/delete/{id}', [categoryContoller::class, 'categoryDelete'])->name('category.delete');
 });
+
+// Admin SubCategory Route
+Route::get('sub/view', [subCategoryController::class, 'subCategoryView'])->name('all.subCategory');
+Route::post('/store', [subCategoryController::class, 'categoryStore'])->name('category.store');
+Route::get('/edit/{id}', [subCategoryController::class, 'categoryEdit'])->name('category.edit');
+Route::post('/update', [subCategoryController::class, 'categoryUpdate'])->name('category.update');
+Route::get('/delete/{id}', [subCategoryController::class, 'categoryDelete'])->name('category.delete');
 
 
 Route::get('/', [IndexController::class, 'index']);

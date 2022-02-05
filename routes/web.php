@@ -78,7 +78,7 @@ Route::get('sub/view', [subCategoryController::class, 'subCategoryView'])->name(
 Route::post('sub/store', [subCategoryController::class, 'subCategoryStore'])->name('subcategory.store');
 Route::get('/sub/edit/{id}', [subCategoryController::class, 'subCategoryEdit'])->name('subcategory.edit');
 Route::post('/appsub/update', [subCategoryController::class, 'subCategoryUpdate'])->name('subcategory.update');
-Route::get('/delete/{id}', [subCategoryController::class, 'categoryDelete'])->name('category.delete');
+Route::get('sub/delete/{id}', [subCategoryController::class, 'subCategoryDelete'])->name('subcategory.delete');
 
 
 Route::get('/', [IndexController::class, 'index']);

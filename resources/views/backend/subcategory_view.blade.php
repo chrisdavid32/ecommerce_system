@@ -53,7 +53,7 @@
           </div>
          
             <div class="text-xs-right">
-              <input type="submit"  class="mb-5 pull- btn btn-rounded btn-primary" value="Update">
+              <input type="submit"  class="mb-5 pull- btn btn-rounded btn-primary" value="Add Subcategory">
             </div>
            
     </form>
@@ -87,12 +87,12 @@
         
        
 							<tr>
-        <td>{{$item->category_id}}</td>
+        <td>{{$item->category->category_name_en}}</td>
 								<td>{{ $item->subcategory_name_en}}</td>
 								<td>{{ $item->subcategory_name_hin}}</td>
 								<td>
-         <a href="{{ route('subcategory.edit')}}" class="btn btn-info">Edit</a>
-         <a href="{{ route('subcategory.delete',$item->id)}}" class="btn btn-danger" id="delete">Delete</a>
+         <a href="{{ route('subcategory.edit',$item->id)}}" class="btn btn-info">Edit</a>
+         <a href="#" class="btn btn-danger" id="delete">Delete</a>
         </td>
 								</tr>
         @endforeach

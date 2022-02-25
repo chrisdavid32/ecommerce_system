@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\SubSubCategory;
 
 class subCategoryController extends Controller
 {
@@ -72,5 +73,12 @@ class subCategoryController extends Controller
             'alert-type' => 'success'
         ];
         return redirect()->back()->with($notification);
+    }
+
+    public function subsubCategoryView()
+    {
+        $subsubcategory = SubSubCategory::latest()->get();
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        return view('backend.sub_subcategory_view', compact('subsubcategory', 'categories'));
     }
 }

@@ -77,9 +77,11 @@ Route::prefix('category')->group(function () {
 Route::get('sub/view', [subCategoryController::class, 'subCategoryView'])->name('all.subCategory');
 Route::post('sub/store', [subCategoryController::class, 'subCategoryStore'])->name('subcategory.store');
 Route::get('/sub/edit/{id}', [subCategoryController::class, 'subCategoryEdit'])->name('subcategory.edit');
-Route::post('/appsub/update', [subCategoryController::class, 'subCategoryUpdate'])->name('subcategory.update');
+Route::post('/sub/update', [subCategoryController::class, 'subCategoryUpdate'])->name('subcategory.update');
 Route::get('sub/delete/{id}', [subCategoryController::class, 'subCategoryDelete'])->name('subcategory.delete');
 
+// Admin Sub-SubCategory Route
+Route::get('sub/sub/view', [subCategoryController::class, 'subsubCategoryView'])->name('all.subsubCategory');
 
 Route::get('/', [IndexController::class, 'index']);
 

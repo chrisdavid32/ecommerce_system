@@ -71,17 +71,21 @@ Route::prefix('category')->group(function () {
     Route::get('/edit/{id}', [categoryContoller::class, 'categoryEdit'])->name('category.edit');
     Route::post('/update', [categoryContoller::class, 'categoryUpdate'])->name('category.update');
     Route::get('/delete/{id}', [categoryContoller::class, 'categoryDelete'])->name('category.delete');
+
+
+    // Admin SubCategory Route
+    Route::get('/sub/view', [subCategoryController::class, 'subCategoryView'])->name('all.subCategory');
+    Route::post('/sub/store', [subCategoryController::class, 'subCategoryStore'])->name('subcategory.store');
+    Route::get('/sub/edit/{id}', [subCategoryController::class, 'subCategoryEdit'])->name('subcategory.edit');
+    Route::post('/sub/update', [subCategoryController::class, 'subCategoryUpdate'])->name('subcategory.update');
+    Route::get('/sub/delete/{id}', [subCategoryController::class, 'subCategoryDelete'])->name('subcategory.delete');
+
+    // Admin Sub-SubCategory Route
+    Route::get('/sub/sub/view', [subCategoryController::class, 'subsubCategoryView'])->name('all.subsubCategory');
+
+    Route::get('/subcategory/ajax/{category_id}', [subCategoryController::class, 'getSubCategory']);
+    Route::post('/sub/sub/store', [subCategoryController::class, 'subSubCategoryStore'])->name('subsubCategory.store');
 });
-
-// Admin SubCategory Route
-Route::get('sub/view', [subCategoryController::class, 'subCategoryView'])->name('all.subCategory');
-Route::post('sub/store', [subCategoryController::class, 'subCategoryStore'])->name('subcategory.store');
-Route::get('/sub/edit/{id}', [subCategoryController::class, 'subCategoryEdit'])->name('subcategory.edit');
-Route::post('/sub/update', [subCategoryController::class, 'subCategoryUpdate'])->name('subcategory.update');
-Route::get('sub/delete/{id}', [subCategoryController::class, 'subCategoryDelete'])->name('subcategory.delete');
-
-// Admin Sub-SubCategory Route
-Route::get('sub/sub/view', [subCategoryController::class, 'subsubCategoryView'])->name('all.subsubCategory');
 
 Route::get('/', [IndexController::class, 'index']);
 

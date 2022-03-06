@@ -22,10 +22,8 @@
 					<div class="table-responsive">
 
 
- <form method="post" action="{{ route('subsubCategory.store')}}" >
+ <form method="post" action="{{ route('subsubCategory.update',$subsubcategories->id)}}" >
 	 	@csrf
-					   
-
 	 <div class="form-group">
 	<h5>Category Select <span class="text-danger">*</span></h5>
 	<div class="controls">
@@ -82,7 +80,7 @@
 					 
 
 			 <div class="text-xs-right">
-	<input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 
+	<input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">					 
 						</div>
 					</form>
 

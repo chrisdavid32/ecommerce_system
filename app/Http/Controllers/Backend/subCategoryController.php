@@ -95,22 +95,49 @@ class subCategoryController extends Controller
             'category_id' => 'required',
             'subcategory_id' => 'required',
             'subsubcategory_name_en' => 'required',
-            'subcategory_name_hin' => 'required',
+            'subsubcategory_name_hin' => 'required',
             'subsubcategory_name_hin' => 'required',
         ]);
 
-        Subcategory::create([
+        SubSubCategory::create([
             'category_id' => $request->category_id,
-            'subcategory_name_en' => $request->subcategory_name_en,
-            'subcategory_name_hin' => $request->subcategory_name_hin,
-            'subcategory_slug_en' => strtolower(str_replace(' ', '_', $request->subcategory_name_en)),
-            'subcategory_slug_hin' => str_replace(' ', '_', $request->subcategory_name_hin)
+            'subcategory_id' => $request->subcategory_id,
+            'subsubcategory_name_en' => $request->subsubcategory_name_en,
+            'subsubcategory_name_hin' => $request->subsubcategory_name_hin,
+            'subsubcategory_slug_en' => strtolower(str_replace(' ', '_', $request->subsubcategory_name_en)),
+            'subsubcategory_slug_hin' => str_replace(' ', '_', $request->subsubcategory_name_hin)
 
         ]);
         $notification = [
-            'message' => 'SubCategory created Successfully',
+            'message' => 'Sub_subCategory created Successfully',
             'alert-type' => 'success'
         ];
         return redirect()->back()->with($notification);
+    }
+
+    public function subSubCategoryEdit($id)
+    {
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $subcategories = Subcategory::orderBy('subcategory_name_en', 'ASC')->get();
+        $subsubcategories = SubSubCategory::findOrFail($id);
+        return view('backend.subsubcategory_edit', compact('categories', 'subcategories', 'subsubcategories'));
+    }
+
+    public function subsubUpdate(Request $request, $id)
+    {
+        SubSubCategory::where('id', $id)->update([
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'subsubcategory_name_en' => $request->subsubcategory_name_en,
+            'subsubcategory_name_hin' => $request->subsubcategory_name_hin,
+            'subsubcategory_slug_en' => strtolower(str_replace(' ', '_', $request->subsubcategory_name_en)),
+            'subsubcategory_slug_hin' => str_replace(' ', '_', $request->subsubcategory_name_hin)
+
+        ]);
+        $notification = [
+            'message' => 'Sub_subCategory updated Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('all.subsubCategory')->with($notification);
     }
 }

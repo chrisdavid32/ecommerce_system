@@ -140,4 +140,14 @@ class subCategoryController extends Controller
         ];
         return redirect()->route('all.subsubCategory')->with($notification);
     }
+
+    public function subsubDelete($id)
+    {
+        SubSubCategory::findOrFail($id)->delete();
+        $notification = [
+            'message' => 'Sub_subCategory deleted Successfully',
+            'alert-type' => 'info'
+        ];
+        return redirect()->back()->with($notification);
+    }
 }

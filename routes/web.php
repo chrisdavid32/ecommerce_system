@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\brandController;
 use App\Http\Controllers\Backend\categoryContoller;
+use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\subCategoryController;
 use app\Models\User;
 
@@ -87,6 +88,12 @@ Route::prefix('category')->group(function () {
     Route::post('/sub/sub/store', [subCategoryController::class, 'subSubCategoryStore'])->name('subsubCategory.store');
     Route::get('sub/sub/edit/{id}', [subCategoryController::class, 'subSubCategoryEdit'])->name('subsubcategory.edit');
     Route::post('subsub/update/{id}', [subCategoryController::class, 'subsubUpdate'])->name('subsubCategory.update');
+    Route::get('subsub/delete/{id}', [subCategoryController::class, 'subsubDelete'])->name('subsubcategory.delete');
+});
+
+//Product Route
+Route::prefix('product')->group(function () {
+    Route::get('/add', [ProductController::class, 'addProduct'])->name('add-product');
 });
 
 Route::get('/', [IndexController::class, 'index']);

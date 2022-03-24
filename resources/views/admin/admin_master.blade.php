@@ -18,6 +18,8 @@
 	<link rel="stylesheet" href="{{ asset ('backend/css/skin_color.css') }}">
 	<link rel="stylesheet" href="{{ asset ('backend/css/toastr.less') }}">
 	<link rel="stylesheet" href="{{ asset ('backend/css/toastr.scss') }}">
+  
+    
 
   
      
@@ -74,6 +76,7 @@
 	<script src="{{ asset ('backend/js/pages/dashboard.js') }}"></script>
 	<script src="{{ asset ('backend/js/toastr.js') }}"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script>
     
     $(function(){

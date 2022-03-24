@@ -19,7 +19,7 @@
 			<div class="box-body">
 			  <div class="row">
 				<div class="col">
-					<form novalidate>
+					<form action="{{ route('store.product')}}" method="POST" enctype="multipart/form-data">
 					  <div class="row">
 						<div class="col-12">
        <div class="row">
@@ -235,10 +235,11 @@
           <div class="form-group">
           <h5>Product Thumbnail <span class="text-danger">*</span></h5>
           <div class="controls">
-            <input type="file" name="product_thumbnail" class="form-control">
+            <input type="file" name="product_thumbnail" class="form-control" onchange="mainThumbUrl(this)">
            @error('product_thumbnail') 
            <span class="text-danger">{{ $message }}</span>
            @enderror 
+           <img src="" alt="" id="mainthmb">
            </div>
             </div>
         </div>
@@ -246,10 +247,11 @@
           <div class="form-group">
           <h5>Multi Image <span class="text-danger">*</span></h5>
           <div class="controls">
-           <input type="text" name="multi_img[]" class="form-control">
+           <input type="file" name="multi_img[]" class="form-control" id="multiImg">
            @error('multi_img') 
            <span class="text-danger">{{ $message }}</span>
            @enderror 
+           <div class="row" id="preview_img"></div>
            </div>
             </div>
         </div>
@@ -407,6 +409,48 @@
                 alert('danger');
             }
         });
+</script>
+<script>
+        function mainThumbUrl(input)
+        {
+          if(input.files && input.files[0]){
+            var reader = new FileReader();
+            reader.onload = function(e){
+             $('#mainthmb').attr('src', e.target.result).width(50).height(50);
+            };
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
 
 </script>
+<script>
+ 
+  $(document).ready(function(){
+   $('#multiImg').on('change', function(){ //on file input change
+      if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+      {
+          var data = $(this)[0].files; //this file data
+           
+          $.each(data, function(index, file){ //loop though each file
+              if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
+                  var fRead = new FileReader(); //new filereader
+                  fRead.onload = (function(file){ //trigger function on successful read
+                  return function(e) {
+                      var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(40).height(40);
+                       //create image element 
+                      $('#preview_img').append(img); 
+                      //append image to output element
+                  };
+                  })(file);
+                  fRead.readAsDataURL(file); //URL representing the file's data.
+              }
+          });
+           
+      }else{
+          alert("Your browser doesn't support File API!"); //if File API is absent
+      }
+   });
+  });
+   
+  </script>
 @endsection 

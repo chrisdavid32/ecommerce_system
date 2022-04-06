@@ -20,6 +20,7 @@
 			  <div class="row">
 				<div class="col">
 					<form action="{{ route('store.product')}}" method="POST" enctype="multipart/form-data">
+            @csrf
 					  <div class="row">
 						<div class="col-12">
        <div class="row">
@@ -186,7 +187,7 @@
 							<div class="row">
         <div class="col-md-4">
           <div class="form-group">
-          <h5>Product Color En <span class="text-danger">*</span></h5>
+          <h5>Product Color English <span class="text-danger">*</span></h5>
           <div class="controls">
             <input type="text" name="product_color_en" class="form-control" value="" data-role="tagsinput">
            @error('product_color_en') 
@@ -197,7 +198,7 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-          <h5>Product Color Enlish <span class="text-danger">*</span></h5>
+          <h5>Product Color Hindi <span class="text-danger">*</span></h5>
           <div class="controls">
             <input type="text" name="product_color_hin" class="form-control" value="" data-role="tagsinput">
            @error('product_color_hin') 
@@ -224,7 +225,7 @@
           <div class="form-group">
           <h5>Product Discount Price <span class="text-danger">*</span></h5>
           <div class="controls">
-            <input type="text" name="discount_price" class="form-control" value="" data-role="tagsinput">
+            <input type="text" name="discount_price" class="form-control">
            @error('discount_price') 
            <span class="text-danger">{{ $message }}</span>
            @enderror 
@@ -243,11 +244,11 @@
            </div>
             </div>
         </div>
-        <div class="col-md-4">
+                <div class="col-md-4">
           <div class="form-group">
           <h5>Multi Image <span class="text-danger">*</span></h5>
           <div class="controls">
-           <input type="file" name="multi_img[]" class="form-control" id="multiImg">
+           <input type="file" name="multi_img[]" class="form-control" id="multiImg" multiple="">
            @error('multi_img') 
            <span class="text-danger">{{ $message }}</span>
            @enderror 

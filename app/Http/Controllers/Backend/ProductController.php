@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\multiimg;
 use Image;
 
 class ProductController extends Controller
@@ -24,9 +25,9 @@ class ProductController extends Controller
         $image = $request->file('product_thumbnail');
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
         Image::make($image)->resize(917, 1000)->save('product/product_thumbnail/' . $name_gen);
-        $save_url = 'upload/product/product_thumbnail/' . $name_gen;
+        $save_url = 'product/product_thumbnail/' . $name_gen;
 
-        Product::insert([
+        $productId = Product::insertGetId([
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
@@ -57,5 +58,23 @@ class ProductController extends Controller
             'created_at' => Carbon::now(),
             'product_thumbnail' => $save_url
         ]);
+
+        //multi image upload create
+        $images = $request->file('multi_img');
+        foreach ($images as $img) {
+            $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(917, 1000)->save('product/multi_image/' . $make_name);
+            $save_nameUrl = 'product/multi_image/' . $make_name;
+            multiimg::insert([
+                'product_id' => $productId,
+                'photo_name' => $save_nameUrl
+
+            ]);
+        }
+        $notification = [
+            'message' => 'Product added Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
     }
 }

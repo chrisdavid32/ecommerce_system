@@ -1,6 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.js') }}"></script>
 
   <!-- Content Wrapper. Contains page content -->
   
@@ -18,7 +18,7 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">Sub->SubCategory List <span class="badge badge-pill badge-danger">  </span></h3>
+				  <h3 class="box-title">Sub-SubCategory List</h3>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">

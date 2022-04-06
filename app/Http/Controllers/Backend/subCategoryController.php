@@ -89,6 +89,13 @@ class subCategoryController extends Controller
         return json_encode($subcat);
     }
 
+    public function getSubSubCategory($subcategory_id)
+    {
+        $subsubcat = SubSubcategory::where('subcategory_id', $subcategory_id)->get();
+
+        return json_encode($subsubcat);
+    }
+
     public function subSubCategoryStore(Request $request)
     {
         $request->validate([

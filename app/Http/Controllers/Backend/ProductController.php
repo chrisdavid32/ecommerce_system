@@ -9,6 +9,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\multiimg;
+use App\Models\Subcategory;
+use App\Models\SubSubCategory;
 use Image;
 
 class ProductController extends Controller
@@ -75,6 +77,22 @@ class ProductController extends Controller
             'message' => 'Product added Successfully',
             'alert-type' => 'success'
         ];
-        return redirect()->back()->with($notification);
+        return redirect()->route('manage-product')->with($notification);
+    }
+
+    public function manageProduct()
+    {
+        $products = Product::latest()->get();
+        return view('backend.product.product_view', compact('products'));
+    }
+
+    public function editProduct($id)
+    {
+        $categories = Category::latest()->get();
+        $brands = Brand::latest()->get();
+        $subcategory = Subcategory::latest()->get();
+        $subsubcategory = SubSubCategory::latest()->get();
+        $products = Product::findOrFail($id);
+        return view('backend.product.product_edit', compact('categories', 'brands', 'subcategory', 'subsubcategory', 'products'));
     }
 }

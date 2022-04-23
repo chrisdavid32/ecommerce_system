@@ -56,7 +56,7 @@
 								<td>
 									<a href="" class="btn btn-primary" title="view Product"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;
 									<a href="{{route('product.edit',$item->id)}}" class="btn btn-info" title="Edit Product"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
-									<a href="{{route('product.delete')}}" class="btn btn-danger" id="delete" title="product delete"><i class="fa fa-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<a href="{{route('product.delete',$item->id)}}" class="btn btn-danger" id="delete" title="product delete"><i class="fa fa-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 									@if ($item->status == 1)
 									<a href="{{ route('product.inactive',$item->id)}}" class="btn btn-danger" title="Inactive now"><i class="fa fa-arrow-down"></i></a>
 									@else

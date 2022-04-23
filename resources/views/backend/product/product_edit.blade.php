@@ -353,6 +353,7 @@
 		</section>
 		<!-- /.content -->
 
+    <!-- Multi Image part -->
     <section>
       <div class="content">
         <div class="row">
@@ -369,7 +370,7 @@
                 <div class="card">
                   <img src="{{asset($multimg->photo_name)}}" class="card-img-top" style="height: 150; width: 130px">
                   <div class="card-body">
-                    <a href="" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+                    <a href="{{route('delete.multiimg', $multimg->id)}}" class="btn btn-sm btn-danger" id="delete"><i class="fa fa-trash"></i></a>
                     <p class="card-text">
                       <div class="form-group">
                         <label class="form-control-label">Change Image<span class="text-danger">*</span></label> 
@@ -395,6 +396,53 @@
 
       </div>
     </section>
+
+     <!-- Single Image thumbnail part-->
+     <section>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+				<div class="box bt-3 border-info">
+				  <div class="box-header">
+					<h4 class="box-title">Image Thumbnail <strong>update</strong></h4>
+				  </div>
+          <form action="{{ route('update-product-thambnail')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="id" value="{{ $products->id}}">
+            <input type="hidden" name="old_img" value="{{ $products->product_thumbnail	}}">
+            <div class="row row-sm">
+             
+               <div class="col-md-3">
+                <div class="card">
+                  <img src="{{asset($products->product_thumbnail)}}" class="card-img-top" style="height: 150; width: 130px">
+                 
+                    <p class="card-text">
+                      <div class="form-group">
+                        <label class="form-control-label">Change Image<span class="text-danger">*</span></label> 
+                        <input type="file" name="product_thumbnail" class="form-control" onchange="mainThumbUrl(this)">
+                        <img src="" alt="" id="mainthmb">  
+                      </div>
+                      
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            	
+						<div class="text-xs-right">
+	            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image">					 
+						</div>
+            <br>
+          </form>
+				</div>
+			  </div>
+        </div>
+
+      </div>
+    </section>
+
+   
 	  </div>
 <script>
   

@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\brandController;
 use App\Http\Controllers\Backend\categoryContoller;
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\backend\subCategoryController;
 use app\Models\User;
 
@@ -106,6 +107,12 @@ Route::prefix('product')->group(function () {
     Route::get('/inactive/{id}', [ProductController::class, 'productInactive'])->name('product.inactive');
     Route::get('/delete/{id}', [ProductController::class, 'productDelete'])->name('product.delete');
 
+});
+
+//Slider route
+Route::prefix('slider')->group(function () {
+    Route::get('/view', [SliderController::class, 'sliderView'])->name('manage-slider');
+    
 });
 
 Route::get('/', [IndexController::class, 'index']);

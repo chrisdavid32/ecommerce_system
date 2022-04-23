@@ -100,6 +100,11 @@ Route::prefix('product')->group(function () {
     Route::get('/edit/{id}', [ProductController::class, 'editProduct'])->name('product.edit');
     Route::post('/update', [ProductController::class, 'productUpdate'])->name('product.update');
     Route::post('/update/image', [ProductController::class, 'multiImageUpdate'])->name('update.image');
+    Route::post('/update/thambnail', [ProductController::class, 'thambnailUpdate'])->name('update-product-thambnail');
+    Route::get('/multiimg/delete/{id}', [ProductController::class, 'multiDelete'])->name('delete.multiimg');
+    Route::get('/active/{id}', [ProductController::class, 'productActive'])->name('product.active');
+    Route::get('/inactive/{id}', [ProductController::class, 'productInactive'])->name('product.inactive');
+
 });
 
 Route::get('/', [IndexController::class, 'index']);

@@ -104,6 +104,7 @@ Route::prefix('product')->group(function () {
     Route::get('/multiimg/delete/{id}', [ProductController::class, 'multiDelete'])->name('delete.multiimg');
     Route::get('/active/{id}', [ProductController::class, 'productActive'])->name('product.active');
     Route::get('/inactive/{id}', [ProductController::class, 'productInactive'])->name('product.inactive');
+    Route::post('/delete/{id}', [ProductController::class, 'productDelete'])->name('product.delete');
 
 });
 

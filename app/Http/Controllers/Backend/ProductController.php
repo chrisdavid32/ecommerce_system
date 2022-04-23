@@ -210,4 +210,9 @@ class ProductController extends Controller
         ];
         return redirect()->back()->with($notification); 
      }
+
+     public function productDelete()
+     {
+         
+     }
 }

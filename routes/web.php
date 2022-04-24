@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\categoryContoller;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\backend\subCategoryController;
+use App\Models\Slider;
 use app\Models\User;
 
 /*
@@ -33,10 +34,15 @@ Route::group(['prefix' => 'admin', 'Middleware' => ['admin:admin']], function ()
     Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
+// Route group protected by  
+Route::middleware(['auth:admin'])->group(function(){
+   
+});
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('admin/dashboard', function () {
 
     return view('admin.index');
 })->name('dashboard');
+
 
 //Admin All Route
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
@@ -112,7 +118,12 @@ Route::prefix('product')->group(function () {
 //Slider route
 Route::prefix('slider')->group(function () {
     Route::get('/view', [SliderController::class, 'sliderView'])->name('manage-slider');
-    
+    Route::post('/store', [SliderController::class, 'sliderStore'])->name('slider.store');
+    Route::get('/edit/{id}', [SliderController::class, 'sliderEdit'])->name('slider.edit');
+    Route::post('/update', [SliderController::class, 'sliderUpdate'])->name('slider.update');
+    Route::get('/delete/{id}', [SliderController::class, 'sliderDelete'])->name('slider.delete');
+    Route::get('/inactive/{id}', [SliderController::class, 'slideInactive'])->name('slider.inactive');
+    Route::get('/active/{id}', [SliderController::class, 'slideActive'])->name('slider.active');
 });
 
 Route::get('/', [IndexController::class, 'index']);

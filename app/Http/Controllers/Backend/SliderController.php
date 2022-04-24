@@ -45,4 +45,51 @@ class SliderController extends Controller
         $slider = Slider::findOrFail($id);
         return view('backend.slider.slider_edit', compact('slider'));
     }
+
+    public function sliderUpdate(Request $request)
+    {
+        $slider_id = $request->id;
+        $old_img = $request->old_image;
+
+        if ($request->file('slider_img')) {
+            unlink($old_img);
+            $image = $request->file('slider_img');
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(870, 370)->save('upload/slider/' . $name_gen);
+            $save_url = 'upload/slider/' . $name_gen;
+            Slider::findOrFail($slider_id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'slider_img' => $save_url,
+
+            ]);
+            $notification = [
+                'message' => 'Slider updated Successfully',
+                'alert-type' => 'success'
+            ];
+            return redirect()->route('manage-slider')->with($notification);
+        } else {
+            Slider::findOrFail($slider_id)->update([
+            'title' => $request->title,
+            'description' => $request->description
+            ]);
+            $notification = [
+                'message' => 'Slider updated without Image Successfully',
+                'alert-type' => 'success'
+            ];
+            return redirect()->route('manage-slider')->with($notification);
+        }
+    }
+
+    public function sliderDelete($id)
+    {
+        $slider = Slider::findOrFail($id);
+        unlink($slider->slider_img);
+        $slider->delete();
+        $notification = [
+            'message' => 'Slider deleted Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
 }

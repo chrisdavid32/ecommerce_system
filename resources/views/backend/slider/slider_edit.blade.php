@@ -15,16 +15,16 @@
 				<div class="box-header with-border">
 				  <h3 class="box-title">Edit Slider</h3>
 				</div>
-				{{-- <!-- /.box-header -->{{ route('slider.update',$slider->id)}} --}}
+				<!-- /.box-header -->
 				<div class="box-body">
-					<form action="" method="post" enctype="multipart/form-data">
+					<form action="{{ route('slider.update')}}" method="post" enctype="multipart/form-data">
        @csrf
        <input type="hidden" name="id" value="{{ $slider->id}}">
        <input type="hidden" name="old_image" value="{{ $slider->slider_img}}">
         <div class="form-group">
           <h5>Title<span class="text-danger">*</span></h5>
           <div class="controls">
-          <input type="text" name="Title"  class="form-control" value="{{$slider->title}}">
+          <input type="text" name="title"  class="form-control" value="{{$slider->title}}">
          </div>
          </div>
          <div class="form-group">

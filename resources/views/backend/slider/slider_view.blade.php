@@ -89,13 +89,14 @@
                                     </td>
                                     <td>
                                     <a href="{{ route('slider.edit',$item->id)}}" class="btn btn-info btn-sm" title="Edit Slider"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
-                                    {{-- <a href="{{ route('brand.delete',$item->id)}}" class="btn btn-danger" id="delete">Delete</a> --}}
+									<a href="{{route('slider.delete',$item->id)}}" class="btn btn-danger btn-sm" id="delete" title="slider delete"><i class="fa fa-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+
                                     
-                                    {{-- @if ($item->status == 1)
-									<a href="{{ route('product.inactive',$item->id)}}" class="btn btn-danger" title="Inactive now"><i class="fa fa-arrow-down"></i></a>
+                                    @if ($item->status == 1)
+									<a href="{{ route('slider.inactive',$item->id)}}" class="btn btn-danger" title="Inactive now"><i class="fa fa-arrow-down"></i></a>
 									@else
-									<a href="{{ route('product.active',$item->id)}}" class="btn btn-success" title="Active now"><i class="fa fa-arrow-up"></i></a>
-									@endif --}}
+									<a href="{{ route('slider.active',$item->id)}}" class="btn btn-success" title="Active now"><i class="fa fa-arrow-up"></i></a>
+									@endif
                                 </td>
                                 </tr>
                                  @endforeach 

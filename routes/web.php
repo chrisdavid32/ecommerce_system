@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\categoryContoller;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\backend\subCategoryController;
+use App\Models\Slider;
 use app\Models\User;
 
 /*
@@ -114,6 +115,9 @@ Route::prefix('slider')->group(function () {
     Route::get('/view', [SliderController::class, 'sliderView'])->name('manage-slider');
     Route::post('/store', [SliderController::class, 'sliderStore'])->name('slider.store');
     Route::get('/edit/{id}', [SliderController::class, 'sliderEdit'])->name('slider.edit');
+    Route::post('/update', [SliderController::class, 'sliderUpdate'])->name('slider.update');
+    Route::get('/delete/{id}', [SliderController::class, 'sliderDelete'])->name('slider.delete');
+    Route::
 });
 
 Route::get('/', [IndexController::class, 'index']);

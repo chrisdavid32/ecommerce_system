@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\categoryContoller;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\backend\subCategoryController;
+use App\Http\Controllers\frontend\LanguageController;
 use App\Models\Slider;
 use app\Models\User;
 
@@ -125,6 +126,10 @@ Route::prefix('slider')->group(function () {
     Route::get('/inactive/{id}', [SliderController::class, 'slideInactive'])->name('slider.inactive');
     Route::get('/active/{id}', [SliderController::class, 'slideActive'])->name('slider.active');
 });
+
+Route::get('language/hindi', [LanguageController::class, 'hindi'])->name('hindi.language');
+Route::get('language/english', [LanguageController::class, 'english'])->name('english.language');
+
 
 Route::get('/', [IndexController::class, 'index']);
 

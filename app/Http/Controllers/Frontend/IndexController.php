@@ -86,4 +86,10 @@ class IndexController extends Controller
             return redirect()->back();
         }
     }
+
+    public function productDetails($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('frontend.product.product_details');
+    }
 }

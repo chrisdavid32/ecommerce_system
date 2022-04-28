@@ -956,21 +956,29 @@
           <div class="products">
            <div class="product">
             <div class="product-image">
-             <div class="image"> <a href="detail.html"><img src="{{ asset($product->product_thumbnail)}}" alt=""></a> </div>
+             <div class="image"> <a href="{{url('/product/details/'.$product->id)}}"><img src="{{ asset($product->product_thumbnail)}}" alt=""></a> </div>
              <!-- /.image -->
+             @php
+             $discount = ($product->discount_price/$product->selling_price) * 100;
+            @endphp
 
-             <div class="tag new"><span>new</span></div>
+              @if($product->discount_price == NULL)
+              <div class="tag new"><span>new</span></div>
+          
+            @else
+            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+            @endif
             </div>
-            <!-- /.product-image -->
-
             <div class="text-left product-info">
              <h3 class="name"><a href="detail.html">{{$product->product_name_en}}</a></h3>
              <div class="rating rateit-small"></div>
              <div class="description"></div>
-             <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$
-               800</span> </div>
-             <!-- /.product-price -->
-
+             @if($product->discount_price == NULL)
+              <div class="product-price"> <span class="price">&#8358; {{$product->selling_price}} </span> </div>
+              @else
+              <div class="product-price"> <span class="price"> &#8358; {{$product->selling_price - $product->discount_price}}</span> <span class="price-before-discount">
+                &#8358;{{$product->selling_price}}</span> </div>
+              @endif
             </div>
             <!-- /.product-info -->
             <div class="clearfix cart animate-effect">
@@ -997,7 +1005,7 @@
           <!-- /.products -->
          </div>
          <!-- /.item -->
-         @endforeach // end product foreach
+         @endforeach <!-- end product foreach-->
        </div>
         <!-- /.home-owl-carousel -->
        </div>
@@ -1019,17 +1027,31 @@
              <div class="product-image">
               <div class="image"> <a href="detail.html"><img src="{{ asset($product->product_thumbnail)}}" alt=""></a> </div>
               <!-- /.image -->
- 
-              <div class="tag new"><span>new</span></div>
+              @php
+               $discount = ($product->discount_price/$product->selling_price) * 100;
+              @endphp
+
+                @if($product->discount_price == NULL)
+                <div class="tag new"><span>new</span></div>
+            
+              @else
+              <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+              @endif
              </div>
              <!-- /.product-image -->
  
              <div class="text-left product-info">
-              <h3 class="name"><a href="detail.html">{{$product->product_name_en}}</a></h3>
+              <h3 class="name"><a href="#">{{$product->product_name_en}}</a></h3>
               <div class="rating rateit-small"></div>
               <div class="description"></div>
-              <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$
-                800</span> </div>
+              @if($product->discount_price == NULL)
+              <div class="product-price"> <span class="price">&#8358; {{$product->selling_price}} </span> </div>
+              @else
+              <div class="product-price"> <span class="price"> &#8358; {{$product->selling_price - $product->discount_price}}</span> <span class="price-before-discount">
+                &#8358;{{$product->selling_price}}</span> </div>
+              @endif
+
+              
               <!-- /.product-price -->
  
              </div>

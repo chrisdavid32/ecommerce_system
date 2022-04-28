@@ -155,7 +155,7 @@
                 @foreach ($categories as $category)
                 
                 <li class="dropdown yamm mega-menu"> 
-                  <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">{{ $category->category_name_en}}</a>
+                  <a href="#" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">{{ $category->category_name_en}}</a>
                   <ul class="container dropdown-menu">
                     <li>
                       <div class="yamm-content ">

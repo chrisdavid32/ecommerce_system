@@ -130,10 +130,10 @@ Route::prefix('slider')->group(function () {
 Route::get('language/hindi', [LanguageController::class, 'hindi'])->name('hindi.language');
 Route::get('language/english', [LanguageController::class, 'english'])->name('english.language');
 
+//product details route
+Route::get('product/details/{id}', [IndexController::class, 'productDetails']);
 
 Route::get('/', [IndexController::class, 'index']);
-
-
 
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {

@@ -1,6 +1,8 @@
 @extends('frontend.master')
 
 @section('content')
+@section('title')
+@endsection
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
  <div class="container">
   <div class="row">
@@ -956,7 +958,7 @@
           <div class="products">
            <div class="product">
             <div class="product-image">
-             <div class="image"> <a href="{{url('/product/details/'.$product->id)}}"><img src="{{ asset($product->product_thumbnail)}}" alt=""></a> </div>
+             <div class="image"> <a href=""><img src="{{ asset($product->product_thumbnail)}}" alt=""></a> </div>
              <!-- /.image -->
              @php
              $discount = ($product->discount_price/$product->selling_price) * 100;
@@ -970,7 +972,7 @@
             @endif
             </div>
             <div class="text-left product-info">
-             <h3 class="name"><a href="detail.html">{{$product->product_name_en}}</a></h3>
+             <h3 class="name"><a href="{{ url('product/details/'.$product->id) }}">{{$product->product_name_en}}</a></h3>
              <div class="rating rateit-small"></div>
              <div class="description"></div>
              @if($product->discount_price == NULL)
@@ -1041,7 +1043,7 @@
              <!-- /.product-image -->
  
              <div class="text-left product-info">
-              <h3 class="name"><a href="#">{{$product->product_name_en}}</a></h3>
+              <h3 class="name"><a href="">{{$product->product_name_en}}</a></h3>
               <div class="rating rateit-small"></div>
               <div class="description"></div>
               @if($product->discount_price == NULL)

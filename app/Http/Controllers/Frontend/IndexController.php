@@ -90,6 +90,14 @@ class IndexController extends Controller
     public function productDetails($id)
     {
         $product = Product::findOrFail($id);
-        return view('frontend.product.product_details');
+             $discount = $product->selling_price - $product->discount_price;
+        
+        return view('frontend.product.product_details', compact('product', 'discount'));
+    }
+
+    public function productNew()
+    {
+      
+        return view('frontend.product.newproduct');
     }
 }

@@ -131,7 +131,8 @@ Route::get('language/hindi', [LanguageController::class, 'hindi'])->name('hindi.
 Route::get('language/english', [LanguageController::class, 'english'])->name('english.language');
 
 //product details route
-Route::get('product/details/{id}', [IndexController::class, 'productDetails']);
+Route::get('/product/details/{id}', [IndexController::class, 'productDetails']);
+Route::get('new', [IndexController::class, 'productNew'])->name('product_new');
 
 Route::get('/', [IndexController::class, 'index']);
 

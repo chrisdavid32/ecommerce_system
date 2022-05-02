@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\multiimg;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,8 @@ class IndexController extends Controller
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
         $sliders = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
-        return view('frontend.index', compact('categories', 'sliders', 'products'));
+        $feature = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(6)->get();
+        return view('frontend.index', compact('categories', 'sliders', 'products', 'feature'));
     }
 
     public function userLogout()
@@ -90,14 +92,15 @@ class IndexController extends Controller
     public function productDetails($id)
     {
         $product = Product::findOrFail($id);
-             $discount = $product->selling_price - $product->discount_price;
+        $discount = $product->selling_price - $product->discount_price;
+        $multimg = multiimg::where('product_id', $id)->get();
         
-        return view('frontend.product.product_details', compact('product', 'discount'));
+        return view('frontend.product.product_details', compact('product', 'discount', 'multimg'));
     }
 
-    public function productNew()
-    {
+//     public function productNew()
+//     {
       
-        return view('frontend.product.newproduct');
-    }
+//         return view('frontend.product.newproduct');
+//     }
 }

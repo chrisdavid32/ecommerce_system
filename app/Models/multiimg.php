@@ -10,4 +10,9 @@ class multiimg extends Model
     use HasFactory;
 
     protected $guaded = [];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
 }

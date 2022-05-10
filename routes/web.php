@@ -133,7 +133,7 @@ Route::get('language/english', [LanguageController::class, 'english'])->name('en
 //product details route
 Route::get('/product/details/{id}', [IndexController::class, 'productDetails']);
 
-Route::get('/product/tag/{id}', [IndexController::class, 'productDetails']);
+Route::get('/product/tag/{tag}', [IndexController::class, 'tagProduct']);
 
 // Route::get('new', [IndexController::class, 'productNew'])->name('product_new');
 

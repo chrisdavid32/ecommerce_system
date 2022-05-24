@@ -122,6 +122,7 @@ class IndexController extends Controller
     public function tagProduct($tag)
     {
         $products = Product::where('status', 1)->where('product_tags_en', $tag)->orderBy('id', 'DESC')->get();
-        return view('frontend.tags.tag_view', compact('products'));
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        return view('frontend.tags.tag_view', compact('products', 'categories'));
     }
 }

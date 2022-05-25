@@ -22,7 +22,7 @@
 			<div class='col-md-3 sidebar'>
 				<div class="sidebar-module-container">
 				<div class="home-banner outer-top-n">
-<img src="assets/images/banners/LHS-banner.jpg" alt="Image">
+<img src="{{asset('frontend/assets/images/banners/LHS-banner.jpg')}}" alt="Image">
 </div>		
   
     
@@ -36,7 +36,7 @@
 					<div class="products">
 						<div class="hot-deal-wrapper">
 							<div class="image">
-								<img src="assets/images/hot-deals/p5.jpg" alt="">
+								<img src="{{asset('frontend/assets/images/hot-deals/p5.jpg')}}" alt="">
 							</div>
 							<div class="sale-offer-tag"><span>35%<br>off</span></div>
 							<div class="timing-wrapper">
@@ -104,7 +104,7 @@
 					<div class="products">
 						<div class="hot-deal-wrapper">
 							<div class="image">
-								<img src="assets/images/products/p6.jpg" alt="">
+								<img src="{{ asset('frontend/assets/images/products/p6.jpg')}}" alt="">
 							</div>
 							<div class="sale-offer-tag"><span>35%<br>off</span></div>
 							<div class="timing-wrapper">
@@ -172,7 +172,7 @@
 					<div class="products">
 						<div class="hot-deal-wrapper">
 							<div class="image">
-								<img src="assets/images/products/p7.jpg" alt="">
+								<img src="{{asset('frontend/assets/images/products/p7.jpg')}}" alt="">
 							</div>
 							<div class="sale-offer-tag"><span>35%<br>off</span></div>
 							<div class="timing-wrapper">
@@ -268,13 +268,13 @@
         </div><!-- /.item -->
 
          <div class="item">
-         	<div class="avatar"><img src="assets/images/testimonials/member3.png" alt="Image"></div>
+         	<div class="avatar"><img src="{{asset('frontend/assets/images/testimonials/member3.png')}}" alt="Image"></div>
 		<div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
 		<div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>    
         </div><!-- /.item -->
 
         <div class="item">
-            <div class="avatar"><img src="assets/images/testimonials/member2.png" alt="Image"></div>
+            <div class="avatar"><img src="{{asset('frontend/assets/images/testimonials/member2.png')}}" alt="Image"></div>
 		<div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
 		<div class="clients_author">Saraha Smith	<span>Datsun &amp; Co</span>	</div><!-- /.container-fluid -->
         </div><!-- /.item -->

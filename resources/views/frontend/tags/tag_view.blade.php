@@ -35,116 +35,30 @@ Tag
                   <h4 class="widget-title">Category</h4>
                 </div>
                 <div class="sidebar-widget-body">
+                  @foreach ($categories as $category)
                   <div class="accordion">
                     <div class="accordion-group">
-                      <div class="accordion-heading"> <a href="#collapseOne" data-toggle="collapse" class="accordion-toggle collapsed"> Camera </a> </div>
+                      <div class="accordion-heading"> <a href="#collapse{{$category->id}}" data-toggle="collapse" class="accordion-toggle collapsed"> {{$category->category_name_en}} </a> </div>
                       <!-- /.accordion-heading -->
-                      <div class="accordion-body collapse" id="collapseOne" style="height: 0px;">
+                      <div class="accordion-body collapse" id="collapse{{$category->id}}" style="height: 0px;">
                         <div class="accordion-inner">
+                          @php
+                             $subcategories = App\Models\Subcategory::where('category_id', $category->id)->orderBy('subcategory_name_en', 'ASC')->get();
+                          @endphp
+                          @foreach ($subcategories as $sub)
                           <ul>
-                            <li><a href="#">gaming</a></li>
-                            <li><a href="#">office</a></li>
-                            <li><a href="#">kids</a></li>
-                            <li><a href="#">for women</a></li>
+                            <li><a href="#">{{$sub->subcategory_name_en}}</a></li>
                           </ul>
+                           @endforeach
                         </div>
                         <!-- /.accordion-inner --> 
                       </div>
                       <!-- /.accordion-body --> 
                     </div>
                     <!-- /.accordion-group -->
-                    
-                    <div class="accordion-group">
-                      <div class="accordion-heading"> <a href="#collapseTwo" data-toggle="collapse" class="accordion-toggle collapsed"> Desktops </a> </div>
-                      <!-- /.accordion-heading -->
-                      <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
-                        <div class="accordion-inner">
-                          <ul>
-                            <li><a href="#">gaming</a></li>
-                            <li><a href="#">office</a></li>
-                            <li><a href="#">kids</a></li>
-                            <li><a href="#">for women</a></li>
-                          </ul>
-                        </div>
-                        <!-- /.accordion-inner --> 
-                      </div>
-                      <!-- /.accordion-body --> 
-                    </div>
-                    <!-- /.accordion-group -->
-                    
-                    <div class="accordion-group">
-                      <div class="accordion-heading"> <a href="#collapseThree" data-toggle="collapse" class="accordion-toggle collapsed"> Pants </a> </div>
-                      <!-- /.accordion-heading -->
-                      <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
-                        <div class="accordion-inner">
-                          <ul>
-                            <li><a href="#">gaming</a></li>
-                            <li><a href="#">office</a></li>
-                            <li><a href="#">kids</a></li>
-                            <li><a href="#">for women</a></li>
-                          </ul>
-                        </div>
-                        <!-- /.accordion-inner --> 
-                      </div>
-                      <!-- /.accordion-body --> 
-                    </div>
-                    <!-- /.accordion-group -->
-                    
-                    <div class="accordion-group">
-                      <div class="accordion-heading"> <a href="#collapseFour" data-toggle="collapse" class="accordion-toggle collapsed"> Bags </a> </div>
-                      <!-- /.accordion-heading -->
-                      <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
-                        <div class="accordion-inner">
-                          <ul>
-                            <li><a href="#">gaming</a></li>
-                            <li><a href="#">office</a></li>
-                            <li><a href="#">kids</a></li>
-                            <li><a href="#">for women</a></li>
-                          </ul>
-                        </div>
-                        <!-- /.accordion-inner --> 
-                      </div>
-                      <!-- /.accordion-body --> 
-                    </div>
-                    <!-- /.accordion-group -->
-                    
-                    <div class="accordion-group">
-                      <div class="accordion-heading"> <a href="#collapseFive" data-toggle="collapse" class="accordion-toggle collapsed"> Hats </a> </div>
-                      <!-- /.accordion-heading -->
-                      <div class="accordion-body collapse" id="collapseFive" style="height: 0px;">
-                        <div class="accordion-inner">
-                          <ul>
-                            <li><a href="#">gaming</a></li>
-                            <li><a href="#">office</a></li>
-                            <li><a href="#">kids</a></li>
-                            <li><a href="#">for women</a></li>
-                          </ul>
-                        </div>
-                        <!-- /.accordion-inner --> 
-                      </div>
-                      <!-- /.accordion-body --> 
-                    </div>
-                    <!-- /.accordion-group -->
-                    
-                    <div class="accordion-group">
-                      <div class="accordion-heading"> <a href="#collapseSix" data-toggle="collapse" class="accordion-toggle collapsed"> Accessories </a> </div>
-                      <!-- /.accordion-heading -->
-                      <div class="accordion-body collapse" id="collapseSix" style="height: 0px;">
-                        <div class="accordion-inner">
-                          <ul>
-                            <li><a href="#">gaming</a></li>
-                            <li><a href="#">office</a></li>
-                            <li><a href="#">kids</a></li>
-                            <li><a href="#">for women</a></li>
-                          </ul>
-                        </div>
-                        <!-- /.accordion-inner --> 
-                      </div>
-                      <!-- /.accordion-body --> 
-                    </div>
-                    <!-- /.accordion-group --> 
-                    
+                                        
                   </div>
+                  @endforeach
                   <!-- /.accordion --> 
                 </div>
                 <!-- /.sidebar-widget-body --> 
@@ -153,6 +67,8 @@ Tag
               <!-- ============================================== SIDEBAR CATEGORY : END ============================================== --> 
               
               <!-- ============================================== PRICE SILDER============================================== -->
+              
+              
               <div class="sidebar-widget wow fadeInUp">
                 <div class="widget-header">
                   <h4 class="widget-title">Price Slider</h4>
@@ -311,17 +227,7 @@ Tag
               </div>
               <!-- /.col -->
               <div class="col col-sm-6 col-md-4 text-right">
-                <div class="pagination-container">
-                  <ul class="list-inline list-unstyled">
-                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                  </ul>
-                  <!-- /.list-inline --> 
-                </div>
+                
                 <!-- /.pagination-container --> </div>
               <!-- /.col --> 
             </div>
@@ -333,23 +239,35 @@ Tag
                 <div class="category-product">
                   <div class="row">
 
+                    @foreach ($products as $product)
                     <div class="col-sm-6 col-md-4 wow fadeInUp">
                       <div class="products">
                         <div class="product">
                           <div class="product-image">
-                            <div class="image"> <a href="#"><img  src="assets/images/products/p5.jpg" alt=""></a> </div>
-                            <!-- /.image -->
-                            
-                            <div class="tag new"><span>new</span></div>
+                            <div class="image"> <a href="{{url('product/details/'.$product->id)}}"><img  src="{{asset($product->product_thumbnail)}}" alt=""></a> </div>
+                            @php
+                            $discount = ($product->discount_price/$product->selling_price) * 100;
+                            @endphp
+
+                              @if($product->discount_price == NULL)
+                              <div class="tag new"><span>new</span></div>
+                          
+                            @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                            @endif
                           </div>
                           <!-- /.product-image -->
                           
                           <div class="product-info text-left">
-                            <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
+                            <h3 class="name"><a href="{{ url('product/details/'.$product->id) }}">{{$product->product_name_en}}</a></h3>
                             <div class="rating rateit-small"></div>
                             <div class="description"></div>
-                            <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
-                            <!-- /.product-price --> 
+                            @if($product->discount_price == NULL)
+                            <div class="product-price"> <span class="price">&#8358; {{$product->selling_price}} </span> </div>
+                            @else
+                            <div class="product-price"> <span class="price"> &#8358; {{$product->selling_price - $product->discount_price}}</span> <span class="price-before-discount">
+                              &#8358;{{$product->selling_price}}</span> </div>
+                            @endif
                             
                           </div>
                           <!-- /.product-info -->
@@ -373,6 +291,7 @@ Tag
                       </div>
                       <!-- /.products --> 
                     </div>
+                    @endforeach
                     <!-- /.item -->
                    
                   </div>
@@ -387,24 +306,32 @@ Tag
               <!---Product list view-->
               <div class="tab-pane "  id="list-container">
                 <div class="category-product">
+                  @foreach ($products as $product)
+                  
                   <div class="category-product-inner wow fadeInUp">
                     <div class="products">
                       <div class="product-list product">
                         <div class="row product-list-row">
                           <div class="col col-sm-4 col-lg-4">
                             <div class="product-image">
-                              <div class="image"> <img src="assets/images/products/p3.jpg" alt=""> </div>
+                              <div class="image"> <img src="{{asset($product->product_thumbnail)}}" alt=""> </div>
+                              
                             </div>
                             <!-- /.product-image --> 
                           </div>
                           <!-- /.col -->
                           <div class="col col-sm-8 col-lg-8">
                             <div class="product-info">
-                              <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
+                              <h3 class="name"><a href="{{ url('product/details/'.$product->id) }}">{{$product->product_name_en}}</a></h3>
                               <div class="rating rateit-small"></div>
-                              <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
+                              @if($product->discount_price == NULL)
+                              <div class="product-price"> <span class="price">&#8358; {{$product->selling_price}} </span> </div>
+                              @else
+                              <div class="product-price"> <span class="price"> &#8358; {{$product->selling_price - $product->discount_price}}</span> <span class="price-before-discount">
+                                &#8358;{{$product->selling_price}}</span> </div>
+                              @endif
                               <!-- /.product-price -->
-                              <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
+                              <div class="description m-t-10">{{$product->short_descp_en}}</div>
                               <div class="cart clearfix animate-effect">
                                 <div class="action">
                                   <ul class="list-unstyled">
@@ -426,12 +353,22 @@ Tag
                           <!-- /.col --> 
                         </div>
                         <!-- /.product-list-row -->
-                        <div class="tag new"><span>new</span></div>
+                        @php
+                        $discount = ($product->discount_price/$product->selling_price) * 100;
+                        @endphp
+
+                          @if($product->discount_price == NULL)
+                          <div class="tag new"><span>new</span></div>
+                      
+                        @else
+                        <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                        @endif
                       </div>
                       <!-- /.product-list --> 
                     </div>
                     <!-- /.products --> 
                   </div>
+                  @endforeach
                   <!-- /.category-product-inner -->
                  
                   
@@ -445,12 +382,7 @@ Tag
               <div class="text-right">
                 <div class="pagination-container">
                   <ul class="list-inline list-unstyled">
-                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                    {{$products->links()}}
                   </ul>
                   <!-- /.list-inline --> 
                 </div>

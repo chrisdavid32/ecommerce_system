@@ -10,6 +10,7 @@ use App\Models\Brand;
 use App\Models\multiimg;
 use App\Models\Product;
 use App\Models\Slider;
+use App\Models\Subcategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use phpDocumentor\Reflection\Types\Null_;
@@ -121,8 +122,9 @@ class IndexController extends Controller
 
     public function tagProduct($tag)
     {
-        $products = Product::where('status', 1)->where('product_tags_en', $tag)->orderBy('id', 'DESC')->get();
+        $products = Product::where('status', 1)->where('product_tags_en', $tag)->orderBy('id', 'DESC')->paginate(3);
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
+              
         return view('frontend.tags.tag_view', compact('products', 'categories'));
     }
 }

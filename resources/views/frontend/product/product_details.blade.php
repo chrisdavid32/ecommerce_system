@@ -296,15 +296,17 @@
     <div class="product-item-holder size-big single-product-gallery small-gallery">
 
 			<!--Single image -->
-			@foreach ($multimg as $img)
+			
         <div id="owl-single-product">
+			@foreach ($multimg as $img)
             <div class="single-product-gallery-item" id="slide{{ $img->id }}">
                 <a data-lightbox="image-1" data-title="Gallery" href="{{ asset($img->photo_name)}}">
                     <img class="img-responsive" alt="" src="{{ asset($img->photo_name)}}" data-echo="{{ asset($img->photo_name)}}" />
                 </a>
             </div><!-- /.single-product-gallery-item -->
+			@endforeach
         </div><!-- /.single-product-slider -->
-		@endforeach
+		
 
         <div class="single-product-gallery-thumbs gallery-thumbs">
 			<div id="owl-single-product-thumbnails">

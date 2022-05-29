@@ -165,13 +165,15 @@
                           @endphp
                           @foreach ($subcategories as $sub)
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                            <a href="{{url('subcategory/product/'.$sub->id.'/'.$sub->subcategory_slug_en )}}">
                             <h2 class="title">{{ $sub->subcategory_name_en}}</h2>
+                          </a>
                           @php
                             $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $sub->id)->orderBy('subsubcategory_name_en', 'ASC')->get();
                           @endphp
                           @foreach ($subsubcategories as $subsub)
                             <ul class="links">
-                              <li><a href="#">{{$subsub->subsubcategory_name_en}}</a></li>
+                              <li><a href="{{url('subsubcategory/product/'.$subsub->id.'/'.$subsub->subsubcategory_slug_en )}}">{{$subsub->subsubcategory_name_en}}</a></li>
                             </ul>
                             @endforeach
                           </div>

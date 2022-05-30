@@ -108,10 +108,14 @@ class IndexController extends Controller
     public function productDetails($id)
     {
         $product = Product::findOrFail($id);
+        $size =   $product->product_size_en;
+        $product_size = explode(',', $size);
+        $color = $product->product_color_en;
+        $product_color = explode(',', $color);
         $discount = $product->selling_price - $product->discount_price;
         $multimg = multiimg::where('product_id', $id)->get();
         
-        return view('frontend.product.product_details', compact('product', 'discount', 'multimg'));
+        return view('frontend.product.product_details', compact('product', 'discount', 'multimg', 'product_size', 'product_color'));
     }
 
 //     public function productNew()
@@ -126,5 +130,19 @@ class IndexController extends Controller
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
               
         return view('frontend.tags.tag_view', compact('products', 'categories'));
+    }
+
+    public function SubcatWiseProduct($subcat_id, $slug)
+    {
+        $products = Product::where('status', 1)->where('subcategory_id', $subcat_id)->orderBy('id', 'DESC')->paginate(3);
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        return view('frontend.product.subcategory_view', compact('products', 'categories'));
+    }
+
+    public function subSubcatWiseProduct($subsubcat_id, $slug)
+    {
+        $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcat_id)->orderBy('id', 'DESC')->paginate(6);
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        return view('frontend.product.subsubcategory_view', compact('products', 'categories'));
     }
 }

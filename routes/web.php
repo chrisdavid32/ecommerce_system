@@ -135,9 +135,18 @@ Route::get('/product/details/{id}', [IndexController::class, 'productDetails']);
 
 Route::get('/product/tag/{tag}', [IndexController::class, 'tagProduct']);
 
-// Route::get('new', [IndexController::class, 'productNew'])->name('product_new');
+//Subcategory wise data
+Route::get('subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubcatWiseProduct']);
+
+Route::get('subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::class, 'subSubcatWiseProduct']);
+
+
+
+
 
 Route::get('/', [IndexController::class, 'index']);
+
+
 
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {

@@ -114,8 +114,10 @@ class IndexController extends Controller
         $product_color = explode(',', $color);
         $discount = $product->selling_price - $product->discount_price;
         $multimg = multiimg::where('product_id', $id)->get();
+        $cat_id = $product->category_id;
+        $related_product = Product::where('category_id', $cat_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->get();
         
-        return view('frontend.product.product_details', compact('product', 'discount', 'multimg', 'product_size', 'product_color'));
+        return view('frontend.product.product_details', compact('product', 'discount', 'multimg', 'product_size', 'product_color', 'related_product'));
     }
 
 //     public function productNew()

@@ -147,4 +147,18 @@ class IndexController extends Controller
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
         return view('frontend.product.subsubcategory_view', compact('products', 'categories'));
     }
+
+    public function productViewAjax($id)
+    {
+        $product = Product::findOrFail($id);
+        $color = $product->product_color_en;
+        $product_color = explode(',', $color);
+        $size = $product->product_size_en;
+        $product_size = explode(',', $size);
+        return response()->json([
+            'product' => $product,
+            'color' => $product_color,
+            'size' => $product_size 
+        ]);
+    }
 }

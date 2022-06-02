@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
 <title>@yield('title')</title>
@@ -112,6 +113,7 @@
               <li class="list-group-item">Product Price</li>
               <li class="list-group-item">Product Code:</li>
               <li class="list-group-item">Category:</li>
+              <li class="list-group-item">Brand:</li>
               <li class="list-group-item">Stock:</li>
             </ul>
           </div>
@@ -138,16 +140,11 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1"></label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
+              <label for="exampleFormControlSelect1">Quantity</label>
+             <input type="number" class="form-control" name="quantity" id="quantity" value="1" min="1">
             </div>
           </div>
+          <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
         </div>
 
 
@@ -155,6 +152,26 @@
     </div>
   </div>
 </div>
+<script>
+  $.ajaxsetup({
+    headers:{
+      'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+    }
+  })
+
+  // view product with modal
+  function productView(id){
+    // console.log(id);
+    $.ajax({
+      type: 'GET',
+      url: '/product/view/modal/'${id},
+      dataType: 'json',
+      success:function(data){
+        
+      }
+    })
+  }
+</script>
 
 </body>
 </html>

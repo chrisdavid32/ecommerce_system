@@ -114,8 +114,10 @@ class IndexController extends Controller
         $product_color = explode(',', $color);
         $discount = $product->selling_price - $product->discount_price;
         $multimg = multiimg::where('product_id', $id)->get();
+        $cat_id = $product->category_id;
+        $related_product = Product::where('category_id', $cat_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->get();
         
-        return view('frontend.product.product_details', compact('product', 'discount', 'multimg', 'product_size', 'product_color'));
+        return view('frontend.product.product_details', compact('product', 'discount', 'multimg', 'product_size', 'product_color', 'related_product'));
     }
 
 //     public function productNew()
@@ -144,5 +146,19 @@ class IndexController extends Controller
         $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcat_id)->orderBy('id', 'DESC')->paginate(6);
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
         return view('frontend.product.subsubcategory_view', compact('products', 'categories'));
+    }
+
+    public function productViewAjax($id)
+    {
+        $product = Product::findOrFail($id);
+        $color = $product->product_color_en;
+        $product_color = explode(',', $color);
+        $size = $product->product_size_en;
+        $product_size = explode(',', $size);
+        return response()->json([
+            'product' => $product,
+            'color' => $product_color,
+            'size' => $product_size 
+        ]);
     }
 }

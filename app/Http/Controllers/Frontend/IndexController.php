@@ -150,7 +150,7 @@ class IndexController extends Controller
 
     public function productViewAjax($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('category', 'brand')->findOrFail($id);
         $color = $product->product_color_en;
         $product_color = explode(',', $color);
         $size = $product->product_size_en;

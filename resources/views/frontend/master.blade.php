@@ -114,7 +114,8 @@
               <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
               <li class="list-group-item">Category:<strong id="pcategory"></strong></li>
               <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
-              <li class="list-group-item">Stock:
+              <li class="list-group-item">Stock: <span class="badge badge-pill badge-success" style="background-color: green; color:#fff" id="available"></span>
+                <span class="badge badge-pill badge-danger" style="background-color: red; color:#fff" id="stockout"></span>
             </ul>
           </div>
 
@@ -176,6 +177,18 @@
           let discount = data.product.selling_price - data.product.discount_price
           $('#pprice').text(data.product.selling_price);
           $('#discount').text(discount);
+        }
+
+        //stock option
+
+        if(data.product.product_qty > 0){
+          $('#stockout').text('')
+          $('#available').text('');
+          $('#available').text('Available');
+        }else{
+          $('#stockout').text('')
+          $('#available').text('');
+          $('#stockout').text('Stock-Out')
         }
         
         $('select[name="color"]').empty();

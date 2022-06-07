@@ -122,21 +122,22 @@
           <div class="col-md-4">
             <div class="form-group" id="colorarea">
               <label for="exampleFormControlSelect1">Select Color</label>
-              <select class="form-control" id="exampleFormControlSelect1" name="color">
+              <select class="form-control" id="color" name="color">
               </select>
             </div>
             <div class="form-group" id="sizearea">
               <label for="exampleFormControlSelect1">Select Size</label>
-              <select class="form-control" id="exampleFormControlSelect1" name="size">
+              <select class="form-control" id="size" name="size">
               </select>
             </div>
             <div class="form-group">
               <label for="exampleFormControlSelect1">Quantity</label>
-             <input type="number" class="form-control" name="quantity" id="quantity" value="1" min="1">
+             <input type="number" class="form-control" name="quantity" id="qty" value="1" min="1">
             </div>
           </div>
           <div class="col-md-12">
-          <button type="submit" class="btn btn-primary mb-2 pull-right">Add to Cart</button>
+            <input type="hidden" id="product_id">
+          <button type="submit" class="btn btn-primary mb-2 pull-right" onclick="addToCart()">Add to Cart</button>
           </div>
         </div>
 
@@ -167,6 +168,8 @@
         $('#pcategory').text(data.product.category.category_name_en);
         $('#pbrand').text(data.product.brand.brand_name_en);
         $('#pimage').attr('src', '/'+data.product.product_thumbnail);
+        $('#product_id').val(id);
+        $('#qty').va(1);
 
         //product discount
         if(data.product.discount_price == null){
@@ -217,6 +220,28 @@
      
     })
   }
+
+  //Add to cart
+function addToCart()
+{
+  var product_name $('#pname').text();
+  var id = $('#product_id').val();
+  var color = $('#color option:selected').text();
+  var size = $('#size option:selected').text();
+  var quantity = $('#qty').val();
+  $.ajax({
+    type: "POST",
+    dataType: "json",
+    data:{
+      color:color, size:size, quantity:quantity, product_name:product_name
+    },
+    url: "/cart/data/store"+id,
+    success:function(data){
+      console.log(data)
+    }
+  });
+}
+
 </script>
 
 </body>

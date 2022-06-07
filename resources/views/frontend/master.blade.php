@@ -102,7 +102,7 @@
         <div class="row">
           <div class="col-md-4">
             <div class="card" style="width: 18rem;">
-              <img src=" " id="pimage" class="card-img-top" style="height: 200px"; width="180px" alt="..." >
+              <img src=" " id="pimage" class="card-img-top" style="height: 200px"; width="200px" alt="..." >
               
             </div>
           </div>

@@ -1,19 +1,20 @@
 <?php
 
+use app\Models\User;
+use App\Models\Slider;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Frontend\IndexController;
-use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\brandController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\categoryContoller;
 use App\Http\Controllers\backend\ProductController;
-use App\Http\Controllers\Backend\SliderController;
-use App\Http\Controllers\backend\subCategoryController;
 use App\Http\Controllers\frontend\LanguageController;
-use App\Models\Slider;
-use app\Models\User;
+use App\Http\Controllers\backend\subCategoryController;
+use App\Http\Controllers\Backend\AdminProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,6 +143,11 @@ Route::get('subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::cla
 
 //product view modal
 Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewAjax']);
+//Add to cart store
+Route::post('/cart/data/store/{id}', [CartController::class, 'addToCart']);
+
+Route::get('/product/mini/cart', [CartController::class, 'addMiniCart']);
+
 
 
 

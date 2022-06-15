@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/rateit.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap-select.min.css') }}">
 <link href="{{ asset('frontend/assets/css/lightbox.css') }}" rel="stylesheet">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Icons/Glyphs -->
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/font-awesome.css') }}">
@@ -65,6 +66,7 @@
 <script src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
 <script src="{{ asset ('backend/js/toastr.js') }}"></script>
 
+
   <script>
     @if(Session::has('message'))
     var type = "{{ Session::get('alert-type', 'info')}}"
@@ -93,8 +95,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><span id="pname"></span></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title"><span id="pname" name="product_name"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModel">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -146,8 +148,9 @@
     </div>
   </div>
 </div>
+
 <script>
-  $.ajaxsetup({
+  $.ajaxSetup({
     headers:{
       'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
     }
@@ -155,7 +158,7 @@
 
   // view product with modal
   function productView(id){
-    // console.log(id);
+    // console.log("here");
     $.ajax({
       type: 'GET',
       url: '/product/view/modal/'+id,
@@ -169,7 +172,7 @@
         $('#pbrand').text(data.product.brand.brand_name_en);
         $('#pimage').attr('src', '/'+data.product.product_thumbnail);
         $('#product_id').val(id);
-        $('#qty').va(1);
+        $('#qty').val(1);
 
         //product discount
         if(data.product.discount_price == null){
@@ -221,10 +224,14 @@
     })
   }
 
-  //Add to cart
-function addToCart()
+   
+</script>
+
+<script>
+ //Add to cart
+ function addToCart()
 {
-  var product_name $('#pname').text();
+  var product_name = $('#pname').text();
   var id = $('#product_id').val();
   var color = $('#color option:selected').text();
   var size = $('#size option:selected').text();
@@ -235,13 +242,65 @@ function addToCart()
     data:{
       color:color, size:size, quantity:quantity, product_name:product_name
     },
-    url: "/cart/data/store"+id,
+    url: "/cart/data/store/"+id,
     success:function(data){
-      console.log(data)
+      $('#closeModel').click();
+      // console.log(data)
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      if ($.isEmptyObject(data.error)) {
+        Toast.fire({
+          type: 'success',
+          title: data.success
+        })
+      }else{
+        Toast.fire({
+          type: 'error',
+          title: data.error
+        })
+      }
     }
   });
 }
+</script>
 
+<script>
+  function miniCart(){
+    $.ajax({
+      type: 'GET',
+      url: '/product/mini/cart',
+      dataType: 'json',
+      success:function(response){
+        var miniCart = "";
+        $.each(response.carts, function(key, value){
+          miniCart += `
+                      <div class="cart-item product-summary">
+                        <div class="row">
+                          <div class="col-xs-4">
+                            <div class="image"> <a href="detail.html"><img src="assets/images/cart.jpg" alt=""></a> </div>
+                          </div>
+                          <div class="col-xs-7">
+                            <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
+                            <div class="price">$600.00</div>
+                          </div>
+                          <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                      <hr>
+                    `
+        });
+        $('#miniCart').html(miniCart);
+      }
+    });
+  }
+  miniCart()
+  
 </script>
 
 </body>

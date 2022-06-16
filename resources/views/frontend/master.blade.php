@@ -95,7 +95,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><span id="pname" name="product_name"></span></h5>
+        <h5 class="modal-title"><span id="pname" ></span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModel">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -244,6 +244,8 @@
     },
     url: "/cart/data/store/"+id,
     success:function(data){
+      //load to update count
+      miniCart();
       $('#closeModel').click();
       // console.log(data)
       const Toast = Swal.mixin({
@@ -277,18 +279,22 @@
       dataType: 'json',
       success:function(response){
         var miniCart = "";
+        $('span[id="cartSubTotal"]').text(response.cartTotal);
+        $('#cartQty').text(response.cartQty)
         $.each(response.carts, function(key, value){
           miniCart += `
                       <div class="cart-item product-summary">
                         <div class="row">
                           <div class="col-xs-4">
-                            <div class="image"> <a href="detail.html"><img src="assets/images/cart.jpg" alt=""></a> </div>
+                            <div class="image"> <a href="detail.html"><img src="/${value.options.image}" alt=""></a> </div>
                           </div>
                           <div class="col-xs-7">
-                            <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
-                            <div class="price">$600.00</div>
+                            <h3 class="name"><a href="">${value.name}</a></h3>
+                            <div class="price">${value.price} * ${value.qty}</div>
                           </div>
-                          <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+                          <div class="col-xs-1 action">
+                            <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"> <i class="fa fa-trash"></i></button>
+                          </div>
                         </div>
                       </div>
                       <div class="clearfix"></div>
@@ -299,7 +305,39 @@
       }
     });
   }
-  miniCart()
+  miniCart();
+
+  //mini cart remove 
+  function miniCartRemove(rowId){
+    $.ajax({
+      type: 'GET',
+      url: '/minicart/product-remove/'+rowId,
+      dataType: 'json',
+      success:function(data){
+        miniCart();
+
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      if ($.isEmptyObject(data.error)) {
+        Toast.fire({
+          type: 'success',
+          title: data.success
+        })
+      }else{
+        Toast.fire({
+          type: 'error',
+          title: data.error
+        })
+      }
+      }
+    });
+  }
+
   
 </script>
 

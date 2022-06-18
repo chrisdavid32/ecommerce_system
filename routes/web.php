@@ -15,6 +15,7 @@ use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\frontend\LanguageController;
 use App\Http\Controllers\backend\subCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\User\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -149,6 +150,9 @@ Route::post('/cart/data/store/{id}', [CartController::class, 'addToCart']);
 Route::get('/product/mini/cart', [CartController::class, 'addMiniCart']);
 
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'removeMiniCart']);
+
+//Add to wishlist
+Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'addToWishlist']);
 
 
 

@@ -79,7 +79,7 @@ class CartController extends Controller
             ]);
             return response()->json(['success' => 'Product added to your wishlist successfully']);  
         }else{
-            return response()->json(['error' => 'Product already exist in your wishlist']);  
+            return response()->json(['error' => 'This Product already exist in your wishlist']);  
         }
 
     }else{

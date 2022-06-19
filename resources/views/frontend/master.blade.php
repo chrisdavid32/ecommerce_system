@@ -402,7 +402,7 @@
                             class="fa fa-shopping-cart"></i> Add to Cart </button>
                         </td>
                         <td class="col-md-1 close-btn">
-                            <a href="#" class=""><i class="fa fa-times"></i></a>
+                            <button type="submit" id="${value.id}" onclick="wishlistRemove(this.id)" class=""><i class="fa fa-times"></i></button>
                         </td>
                       </tr>
                     `
@@ -412,6 +412,38 @@
     });
   }
   wishlist();
+
+  //Remove from added wishlist
+  function wishlistRemove(id){
+    $.ajax({
+      type: 'GET',
+      url: '/wishlist-remove/'+id,
+      dataType: 'json',
+      success:function(data){
+        wishlist();
+
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      if ($.isEmptyObject(data.error)) {
+        Toast.fire({
+          type: 'success',
+          icon: 'success',
+          title: data.success
+        })
+      }else{
+        Toast.fire({
+          type: 'error',
+          icon: 'error',
+          title: data.error
+        })
+      }
+      }
+    });
+  }
 </script>
 
 </body>

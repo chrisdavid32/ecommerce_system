@@ -345,7 +345,7 @@
   function addToWishlist(product_id){
     $.ajax({
       type: 'POST',
-      url: '/add-to-wishlist/'+product_id,
+      url: '/user/add-to-wishlist/'+product_id,
       dataType: 'json',
       success:function(data){
 
@@ -378,7 +378,7 @@
   function wishlist(){
     $.ajax({
       type: 'GET',
-      url: '/get-wishlist-product',
+      url: '/user/get-wishlist-product',
       dataType: 'json',
       success:function(response){
         var rows = "";
@@ -417,7 +417,7 @@
   function wishlistRemove(id){
     $.ajax({
       type: 'GET',
-      url: '/wishlist-remove/'+id,
+      url: '/user/wishlist-remove/'+id,
       dataType: 'json',
       success:function(data){
         wishlist();

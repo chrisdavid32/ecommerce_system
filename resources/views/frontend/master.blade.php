@@ -345,7 +345,7 @@
   function addToWishlist(product_id){
     $.ajax({
       type: 'POST',
-      url: '/user/add-to-wishlist/'+product_id,
+      url: '/add-to-wishlist/'+product_id,
       dataType: 'json',
       success:function(data){
 

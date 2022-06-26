@@ -164,6 +164,9 @@ Route::get('/user/mycart', [CartPageController::class, 'viewCart'])->name('mycar
 Route::get('/user/get-cart-product', [CartPageController::class, 'getCartProduct']);
 Route::get('/user/cart-remove/{rowId}', [CartPageController::class, 'removeCartProduct']);
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'addToWishlist']);
+Route::get('/cart-increment/{rowId}', [CartPageController::class, 'cartIncrement']);
+Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'cartIncrement']);
+
 
 
 

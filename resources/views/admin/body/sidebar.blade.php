@@ -12,7 +12,7 @@
 				  <!-- logo for regular state and mobile devices -->
 					 <div class="d-flex align-items-center justify-content-center">					 	
 						  <img src="{{ asset('backend/images/logo-dark.png') }}" alt="">
-						  <h3><b>Easy</b> Shop</h3>
+						  <h3><b>Ecommerce</b> Shop</h3>
 					 </div>
 				</a>
 			</div>
@@ -81,6 +81,21 @@
           <ul class="treeview-menu">
             <li class="{{ ($route == 'manage-slider') ? 'active' : '' }}"><a href="{{ route('manage-slider')}}">
               <i class="ti-more"></i>Manage Slider</a></li>
+            
+          </ul>
+        </li> 
+
+        <li class="treeview" {{ ($prefix == '/coupons')? 'active' : '' }}>
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Coupons</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'manage-coupons') ? 'active' : '' }}"><a href="{{ route('manage-coupons')}}">
+              <i class="ti-more"></i>Manage Coupons</a></li>
             
           </ul>
         </li> 

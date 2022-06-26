@@ -29,7 +29,7 @@
          <div class="form-group">
             <h5>Description<span class="text-danger">*</span></h5>
             <div class="controls">
-            <textarea name="description" cols="43" rows="4"></textarea>
+            <textarea name="description" cols="38" rows="4"></textarea>
             {{-- <input type="text" name="description"  class="form-control"> --}}
          </div>
           </div>

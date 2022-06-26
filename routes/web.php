@@ -15,6 +15,8 @@ use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\frontend\LanguageController;
 use App\Http\Controllers\backend\subCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\WishlistController;
 
 /*
@@ -156,9 +158,21 @@ Route::group(['prefix'=>'user', 'middleware' => ['user','auth'],'namespace'=>'us
     Route::get('wishlist', [WishlistController::class, 'viewWishlist'])->name('wishlist');
     Route::get('/get-wishlist-product', [WishlistController::class, 'getWishlistProduct']);
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'removeWishlist']);
+ 
 });
-Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'addToWishlist']);
 
+Route::get('/user/mycart', [CartPageController::class, 'viewCart'])->name('mycart');
+Route::get('/user/get-cart-product', [CartPageController::class, 'getCartProduct']);
+Route::get('/user/cart-remove/{rowId}', [CartPageController::class, 'removeCartProduct']);
+Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'addToWishlist']);
+Route::get('/cart-increment/{rowId}', [CartPageController::class, 'cartIncrement']);
+Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'cartDecrement']);
+
+//Coupons route
+Route::prefix('coupons')->group(function () {
+    Route::get('/view', [CouponController::class, 'couponView'])->name('manage-coupons');
+    
+});
 
 
 Route::get('/', [IndexController::class, 'index']);

@@ -17,7 +17,7 @@
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					<form action="" method="post" enctype="multipart/form-data">
+					<form action="{{ route('coupon.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                             <div class="form-group">
                             <h5>Coupon Name <span class="text-danger">*</span></h5>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                             <h5>Coupon Validity Date <span class="text-danger">*</span></h5>
                             <div class="controls">
-                            <input type="date" name="coupon_validity" class="form-control">
+                            <input type="date" name="coupon_validity" class="form-control" min="{{Carbon\Carbon::now()->format('Y-m-d')}}">
                             @error('coupon_validity')
                                 <span class="text-danger">{{ $message }}</span> 
                             @enderror
@@ -48,7 +48,7 @@
                             </div>
                             
                                 <div class="text-xs-right">
-                                <input type="submit"  class="mb-5 pull- btn btn-rounded btn-primary" value="Update">
+                                <input type="submit"  class="mb-5 pull- btn btn-rounded btn-primary" value="Add New">
                                 </div>
                             
                      </form>
@@ -71,7 +71,6 @@
 					  <table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-                        <th>Image</th>
 								<th>Coupon Name</th>
 								<th>Coupon Discount</th>
                                 <th>Coupon Validity</th>

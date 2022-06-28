@@ -83,17 +83,19 @@
                         <tr>
                             <td>{{$item->coupon_name}}</td>
                             <td>{{ $item->coupon_discount}}%</td>
-                            <td>{{ $item->coupon_validity}}</td>
                             <td>
-								@if ($item->status == 1)
+								{{ Carbon\Carbon::parse($item->coupon_validity)->format('D, d F Y') }}
+							</td>
+                            <td>
+								@if ($item->coupon_validity >= Carbon\Carbon::now()->format('Y-m-d'))
 									<span class="badge badge-pill badge-success">Active</span>
 									@else
 										<span class="badge badge-pill badge-danger">Inactive</span>
 								@endif
                             </td>
-                            <td>
-                            {{-- <a href="{{ route('category.edit',$item->id)}}" class="btn btn-info">Edit</a>
-                            <a href="{{ route('category.delete',$item->id)}}" class="btn btn-danger" id="delete">Delete</a> --}}
+                            <td width="25%">
+                            <a href="{{ route('coupon.edit',$item->id)}}" class="btn btn-info" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a href="{{ route('coupon.delete',$item->id)}}" class="btn btn-danger" id="delete" title="Delete"><i class="fa fa-trash"></i></a>
                             </td>
 					    </tr>
                         @endforeach

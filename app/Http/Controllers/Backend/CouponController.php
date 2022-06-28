@@ -34,4 +34,35 @@ class CouponController extends Controller
         ];
         return redirect()->back()->with($notification);
     }
+
+    public function couponEdit($id)
+    {
+        $coupons = Coupon::findOrFail($id);
+        return view('backend.coupon.edit', compact('coupons'));
+    }
+
+    public function couponUpdate(Request $request, $id)
+    {
+        Coupon::findOrFail($id)->update([
+            'coupon_name' =>  strtoupper($request->coupon_name),
+            'coupon_discount' => $request->coupon_discount,
+            'coupon_validity' => $request->coupon_validity
+
+        ]);
+        $notification = [
+            'message' => 'Coupon Updated Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('manage-coupons')->with($notification);
+    }
+
+    public function couponDelete($id)
+    {
+        Coupon::findOrFail($id)->delete();
+        $notification = [
+            'message' => 'Coupon Updated Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
 }

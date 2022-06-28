@@ -172,7 +172,15 @@ Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'cartDecrement
 Route::prefix('coupons')->group(function () {
     Route::get('/view', [CouponController::class, 'couponView'])->name('manage-coupons');
     Route::post('/store', [CouponController::class, 'couponStore'])->name('coupon.store');
+    Route::get('/edit/{id}', [CouponController::class, 'couponEdit'])->name('coupon.edit');
+    Route::post('/update/{id}', [CouponController::class, 'couponUpdate'])->name('coupon.update');
+    Route::get('/delete/{id}', [CouponController::class, 'couponDelete'])->name('coupon.delete');
     
+});
+
+//Shipping route
+Route::prefix('coupons')->group(function () {
+    Route::get('/view', [ShippingAreaController::class, 'divisionView'])->name('manage-division');
 });
 
 

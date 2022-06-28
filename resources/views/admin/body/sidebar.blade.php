@@ -109,7 +109,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{ ($route == 'manage-coupons') ? 'active' : '' }}"><a href="{{ route('manage-division')}}">
+            <li class="{{ ($route == 'manage-division') ? 'active' : '' }}"><a href="{{ route('manage-division')}}">
               <i class="ti-more"></i>Ship Division</a></li>
             
           </ul>

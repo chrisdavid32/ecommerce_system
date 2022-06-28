@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\brandController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\categoryContoller;
@@ -15,9 +18,7 @@ use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\frontend\LanguageController;
 use App\Http\Controllers\backend\subCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
-use App\Http\Controllers\Backend\CouponController;
-use App\Http\Controllers\User\CartPageController;
-use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\Backend\ShippingAreaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -179,8 +180,14 @@ Route::prefix('coupons')->group(function () {
 });
 
 //Shipping route
-Route::prefix('coupons')->group(function () {
+Route::prefix('shipping')->group(function () {
     Route::get('/view', [ShippingAreaController::class, 'divisionView'])->name('manage-division');
+    Route::post('/store', [ShippingAreaController::class, 'divisionStore'])->name('division.store');
+    Route::get('/edit/{id}', [ShippingAreaController::class, 'divisionEdit'])->name('division.edit');
+    Route::post('/update/{id}', [ShippingAreaController::class, 'divisionUpdate'])->name('division.update');
+    Route::get('/delete/{id}', [ShippingAreaController::class, 'divisionDelete'])->name('division.delete');
+
+
 });
 
 

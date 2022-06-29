@@ -79,7 +79,7 @@
                             <td>{{$item->district_name}}</td>
                             <td width="40%">
                             <a href="{{ route('district.edit',$item->id)}}" class="btn btn-info" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a href="{{ route('division.delete',$item->id)}}" class="btn btn-danger" id="delete" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a href="{{ route('district.delete',$item->id)}}" class="btn btn-danger" id="delete" title="Delete"><i class="fa fa-trash"></i></a>
                             </td>
 					    </tr>
                         @endforeach

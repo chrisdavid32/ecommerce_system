@@ -191,6 +191,7 @@ Route::prefix('shipping')->group(function () {
     Route::get('/district/view', [ShippingAreaController::class, 'districtView'])->name('manage-district');
     Route::post('/district/store', [ShippingAreaController::class, 'districtStore'])->name('district.store');
     Route::get('/district/edit/{id}', [ShippingAreaController::class, 'districtEdit'])->name('district.edit');
+    Route::post('/district/update/{id}', [ShippingAreaController::class, 'districtUpdate'])->name('district.update');
 
 });
 

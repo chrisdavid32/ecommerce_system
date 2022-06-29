@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
 use Illuminate\Http\Request;
 
@@ -55,6 +56,32 @@ class ShippingAreaController extends Controller
         ShipDivision::findOrFail($id)->delete();
         $notification = [
             'message' => 'Division Deleted Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
+
+    public function districtView()
+    {
+        $district = ShipDistrict::orderBy('id', 'DESC')->get();
+        $divisions = ShipDivision::orderBy('id', 'ASC')->get();
+        return view('backend.district.view_district', compact('divisions', 'district'));
+    }
+
+    public function districtStore(Request $request)
+    {
+        $request->validate([
+            'district_name' => 'required',
+            'division_id'  => 'required'
+            ]);
+
+        ShipDistrict::create([
+            'division_id' => $request->division_id,
+            'district_name' => $request->district_name
+
+        ]);
+        $notification = [
+            'message' => 'District created Successfully',
             'alert-type' => 'success'
         ];
         return redirect()->back()->with($notification);

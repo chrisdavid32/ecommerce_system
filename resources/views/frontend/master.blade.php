@@ -597,6 +597,18 @@
     });
   }
    
+   
+</script>
+
+<script>
+  function applyCoupon(){
+    var coupon_name = $('')
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url : "{{ url('/coupon-apply')}}"
+    });
+  }
 </script>
 
 </body>

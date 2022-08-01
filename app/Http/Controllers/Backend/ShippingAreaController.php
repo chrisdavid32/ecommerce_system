@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
+use App\Models\ShipState;
 use Illuminate\Http\Request;
 
 class ShippingAreaController extends Controller
@@ -115,5 +116,49 @@ class ShippingAreaController extends Controller
             'alert-type' => 'success'
         ];
         return redirect()->back()->with($notification);
+    }
+
+    public function stateView()
+    {
+        $district = ShipDistrict::orderBy('district_name', 'ASC')->get();
+        $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
+        $states = ShipState::orderBy('id', 'DESC')->get();
+        return view('backend.state.view_state', compact('divisions', 'district', 'states'));
+    }
+
+    public function getdivision($division_id)
+    {
+        $data = ShipDistrict::where('division_id', $division_id)->get();
+
+        return json_encode($data);
+    }
+
+    public function stateStore(Request $request)
+    {
+        $request->validate([
+            'division_id' => 'required',
+            'district_id' => 'required',
+            'state_name' => 'required'
+        ]);
+
+        ShipState::create([
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'state_name'  => $request->state_name
+        ]);
+
+        $notification = [
+            'message' => 'State Created Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
+
+    public function stateEdit($id)
+    {
+        $district = ShipDistrict::orderBy('district_name', 'ASC')->get();
+        $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
+        $states = ShipState::findOrFail($id);
+        return view('backend.state.edit_state', compact('district', 'divisions', 'states'));
     }
 }

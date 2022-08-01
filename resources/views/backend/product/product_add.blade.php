@@ -369,7 +369,7 @@
 <script>
   
    $(document).ready(function() {
-							
+		console.log("anot");					
         
     });
 				$('select[name="category_id"]').on('change', function(){

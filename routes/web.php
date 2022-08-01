@@ -204,6 +204,9 @@ Route::prefix('shipping')->group(function () {
 
 });
 
+//coupon option 
+Route::post('coupon-apply', [CartController::class, 'applyCoupon']);
+
 
 Route::get('/', [IndexController::class, 'index']);
 

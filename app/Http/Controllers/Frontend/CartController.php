@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use App\Models\Wishlist;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
@@ -86,5 +87,10 @@ class CartController extends Controller
         return response()->json(['error' => 'You are not login']);
     }
 
+   }
+
+   public function applyCoupon(Request $request)
+   {
+    $coupon = Coupon::where('coupon_name', $request->coupon_name)
    }
 }

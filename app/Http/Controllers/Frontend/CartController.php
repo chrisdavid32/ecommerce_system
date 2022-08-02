@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\Wishlist;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -91,6 +93,11 @@ class CartController extends Controller
 
    public function applyCoupon(Request $request)
    {
-    $coupon = Coupon::where('coupon_name', $request->coupon_name)
+    $coupon = Coupon::where('coupon_name', $request->coupon_name)->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
+    if ($coupon) {
+        // Session::put
+    }else{
+        return response()->json(['error' => 'Invalid Counpon']);
+    }
    }
 }

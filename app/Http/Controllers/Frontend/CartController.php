@@ -95,7 +95,13 @@ class CartController extends Controller
    {
     $coupon = Coupon::where('coupon_name', $request->coupon_name)->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
     if ($coupon) {
-        // Session::put
+        // Session::put('coupon', [
+        //     'coupon_name' => $coupon->coupon_name,
+        //     'coupon_discount' => $coupon->discount,
+        //     'discount_amount' => Cart::total() * $coupon->coupon_discount,
+        //     'total_amount'   => 
+
+        // ]);
     }else{
         return response()->json(['error' => 'Invalid Counpon']);
     }

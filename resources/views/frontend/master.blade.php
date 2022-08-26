@@ -633,6 +633,17 @@
       }
     });
   }
+
+  function couponCalculate(){
+    $.ajax({
+      type : 'GET',
+      url: "{{ url('/coupon-calculation')}}",
+      dataType: 'json',
+      success:function(){
+        
+      }
+    });
+  }
 </script>
 
 </body>

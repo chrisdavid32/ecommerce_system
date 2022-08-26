@@ -106,4 +106,13 @@ class CartController extends Controller
         return response()->json(['error' => 'Invalid Counpon']);
     }
    }
+
+   public function couponCalculation()
+   {
+    if(Session::has('coupon')){
+        
+    }else{
+        
+    }
+   }
 }

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Carbon\Carbon;
+use App\Models\Coupon;
 use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Coupon;
-use App\Models\Wishlist;
-use Carbon\Carbon;
-use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
@@ -95,13 +95,13 @@ class CartController extends Controller
    {
     $coupon = Coupon::where('coupon_name', $request->coupon_name)->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
     if ($coupon) {
-        // Session::put('coupon', [
-        //     'coupon_name' => $coupon->coupon_name,
-        //     'coupon_discount' => $coupon->discount,
-        //     'discount_amount' => Cart::total() * $coupon->coupon_discount,
-        //     'total_amount'   => 
-
-        // ]);
+        Session::put('coupon', [
+            'coupon_name' => $coupon->coupon_name,
+            'coupon_discount' => $coupon->discount,
+            'discount_amount' => round(Cart::total() * $coupon->coupon_discount / 100),
+            'total_amount'   =>  round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100)
+        ]);
+        return response()->json(['success' => 'Coupon applied Successfully']);
     }else{
         return response()->json(['error' => 'Invalid Counpon']);
     }

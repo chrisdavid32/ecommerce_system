@@ -115,11 +115,11 @@ class CartController extends Controller
             'coupon_name' => session()->get('coupon')['coupon_name'],
             'coupon_discount' => session()->get('coupon')['coupon_discount'],
             'discount_amount' => session()->get('coupon')['discount_amount'],
-            'total_amount' => session()->get('total_amount')['total_amount']
+            'total_amount' => session()->get('coupon')['total_amount']
         ]);
     }else{
         return response()->json([
-            'subtotal' => Cart::total()
+            'total' => Cart::total()
         ]);
 
     }

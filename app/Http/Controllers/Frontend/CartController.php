@@ -138,7 +138,10 @@ class CartController extends Controller
    {
     if(Auth::check()){
         if(Cart::total() > 0){
-
+            $carts = Cart::content();
+            $cartQty = Cart::count();
+            $cartTotal = Cart::total();
+            return view('frontend.checkout.checkout-view', compact('carts', 'cartQty', 'cartTotal'));
         }else{
             $notification = [
                 'message' => 'Item cart is empty',

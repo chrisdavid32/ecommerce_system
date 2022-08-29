@@ -663,7 +663,7 @@
                         </div>
                         <div class="cart-sub-total">
                             Coupon Name <span class="inner-left-md">${data.coupon_name}</span>
-                            <button type="submit"><i class="fa fa-times"></i></button> 
+                            <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i></button> 
                         </div>
                         <div class="cart-sub-total">
                           Discount Amount <span class="inner-left-md">&#8358; ${data.discount_amount}</span>
@@ -680,6 +680,17 @@
   }
 
   couponCalculate();
+
+  function couponRemove(){
+    $.ajax({
+      type: 'GET',
+      url: "{{ url('/coupon-remove')}}",
+      dataType: 'json',
+      success:function(data){
+        
+      }
+    })
+  }
 </script>
 
 </body>

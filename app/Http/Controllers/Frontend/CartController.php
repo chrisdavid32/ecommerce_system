@@ -137,6 +137,15 @@ class CartController extends Controller
    public function checkoutCreate()
    {
     if(Auth::check()){
+        if(Cart::total() > 0){
+
+        }else{
+            $notification = [
+                'message' => 'Item cart is empty',
+                'alert-type' => 'error'
+            ];
+            return redirect()->to('/')->with($notification);
+        }
 
     }else{
         $notification = [

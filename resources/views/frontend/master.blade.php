@@ -579,6 +579,7 @@
       url: "/cart-increment/"+rowId,
       dataType: 'json',
       success:function(data){
+        couponCalculate();
         cart();
         miniCart(); 
       }
@@ -593,6 +594,8 @@
       success:function(data){
         cart();
         miniCart(); 
+        couponCalculate();
+
       }
     });
   }
@@ -692,6 +695,7 @@
       success:function(data){
         couponCalculate();
         $("#couponField").show();
+        $("#coupon_name").val('');
         const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',

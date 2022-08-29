@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use Gloudemans\Shoppingcart\Facades\Cart;
-
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Coupon;
+use Illuminate\Support\Facades\Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartPageController extends Controller
 {
@@ -36,6 +37,9 @@ class CartPageController extends Controller
     {
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty + 1);
+        if(Session::has('coupon')){
+        $this->addCouponData();
+        }
         return response()->json('increment');
     }
 
@@ -43,8 +47,23 @@ class CartPageController extends Controller
     {
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty - 1);
+        if(Session::has('coupon')){
+           $this->addCouponData();
+        }
         return response()->json('Decrement');
     }
 
+    private function addCouponData()
+    {
+        $coupon_name = Session::get('coupon')['coupon_name'];
+        // return $coupon_name;
+        $coupon = Coupon::where('coupon_name', $coupon_name)->first();
+        Session::put('coupon', [
+            'coupon_name' => $coupon->coupon_name,
+            'coupon_discount' => $coupon->discount,
+            'discount_amount' => round(Cart::total() * $coupon->coupon_discount / 100),
+            'total_amount'   =>  round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100)
+        ]);
+    }
 
 }

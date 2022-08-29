@@ -143,7 +143,7 @@ class CartController extends Controller
             'message' => 'You have to Login first to proceed',
             'alert-type' => 'error'
         ];
-        return redirect()->route('login')->with($notification)
+        return redirect()->route('login')->with($notification);
     }
    }
 }

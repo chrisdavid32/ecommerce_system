@@ -546,8 +546,10 @@
       url: '/user/cart-remove/'+id,
       dataType: 'json',
       success:function(data){
+        couponCalculate();
         cart();
         miniCart();
+        $("#couponField").show();
 
         const Toast = Swal.mixin({
         toast: true,
@@ -579,6 +581,7 @@
       url: "/cart-increment/"+rowId,
       dataType: 'json',
       success:function(data){
+        couponCalculate();
         cart();
         miniCart(); 
       }
@@ -593,6 +596,8 @@
       success:function(data){
         cart();
         miniCart(); 
+        couponCalculate();
+
       }
     });
   }
@@ -609,6 +614,9 @@
       data: {coupon_name:coupon_name},
       url : "{{ url('/coupon-apply') }}",
       success:function(data){
+        couponCalculate();
+        $("#couponField").hide();
+
         // console.log(data);
         const Toast = Swal.mixin({
         toast: true,
@@ -663,7 +671,7 @@
                         </div>
                         <div class="cart-sub-total">
                             Coupon Name <span class="inner-left-md">${data.coupon_name}</span>
-                            <button type="submit"><i class="fa fa-times"></i></button> 
+                            <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i></button> 
                         </div>
                         <div class="cart-sub-total">
                           Discount Amount <span class="inner-left-md">&#8358; ${data.discount_amount}</span>
@@ -680,6 +688,39 @@
   }
 
   couponCalculate();
+
+  function couponRemove(){
+    $.ajax({
+      type: 'GET',
+      url: "{{ url('/coupon-remove')}}",
+      dataType: 'json',
+      success:function(data){
+        couponCalculate();
+        $("#couponField").show();
+        $("#coupon_name").val('');
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      })
+      if ($.isEmptyObject(data.error)) {
+        Toast.fire({
+          type: 'success',
+          icon: 'success',
+          title: data.success
+        })
+        
+      }else{
+        Toast.fire({
+          type: 'error',
+          icon: 'error',
+          title: data.error
+        })
+      } 
+      }
+    })
+  }
 </script>
 
 </body>

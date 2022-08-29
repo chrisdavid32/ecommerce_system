@@ -207,6 +207,7 @@ Route::prefix('shipping')->group(function () {
 //coupon option 
 Route::post('/coupon-apply', [CartController::class, 'applyCoupon']);
 Route::get('/coupon-calculation', [CartController::class, 'couponCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'couponRemove']);
 
 
 

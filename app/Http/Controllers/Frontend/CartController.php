@@ -133,4 +133,17 @@ class CartController extends Controller
     Session::forget('coupon');
     return response()->json(['success' => 'Coupon removed sucessfully']);
    }
+
+   public function checkoutCreate()
+   {
+    if(Auth::check()){
+
+    }else{
+        $notification = [
+            'message' => 'You have to Login first to proceed',
+            'alert-type' => 'error'
+        ];
+        return redirect()->route('login')->with($notification)
+    }
+   }
 }

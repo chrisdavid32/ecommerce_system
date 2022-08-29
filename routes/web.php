@@ -209,6 +209,10 @@ Route::post('/coupon-apply', [CartController::class, 'applyCoupon']);
 Route::get('/coupon-calculation', [CartController::class, 'couponCalculation']);
 Route::get('/coupon-remove', [CartController::class, 'couponRemove']);
 
+//checkout route
+Route::get('/checkout', [CartController::class, 'checkoutCreate'])->name('checkout');
+
+
 
 
 Route::get('/', [IndexController::class, 'index']);

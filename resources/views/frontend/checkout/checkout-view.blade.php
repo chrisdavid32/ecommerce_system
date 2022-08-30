@@ -98,8 +98,35 @@ Checkout
                 </div>
                 <div class="">
                     <ul class="nav nav-checkout-progress list-unstyled">
-                        <li><a href="#">Billing Address</a></li>
-                        <li><a href="#">Shipping Address</a></li>
+                        @foreach ($carts as $item)
+                        <li><strong>Image</strong>
+                        <img src="{{ asset($item->options->image)}}" alt="" style="height: 50px; width:50px;"> 
+                        </li> 
+
+                        <li><strong>Qty:</strong>
+                            {{$item->qty}} &nbsp;&nbsp;
+                            
+                            <strong>Color:</strong>
+                            {{$item->options->color}} &nbsp;&nbsp;
+
+                            <strong>Size:</strong>
+                            {{$item->options->size}} &nbsp;&nbsp;
+                        </li> 
+                        @endforeach
+                        <hr>
+                        
+                        @if(Session::has('coupon'))
+                        <strong>SubTotal</strong>{{$cartTotal}} <hr>
+
+                        <strong>Coupon Name:</strong>&nbsp;&nbsp;{{session()->get('coupon')['coupon_name']}} <hr>
+                        @else
+                        <strong>SubTotal:</strong>&nbsp;&nbsp;{{$cartTotal}} <hr>
+
+                        <strong>Grand Total</strong>&nbsp;&nbsp;{{$cartTotal}} <hr>
+                        
+                        @endif
+                       
+
                         <li><a href="#">Shipping Method</a></li>
                         <li><a href="#">Payment Method</a></li>
                     </ul>		

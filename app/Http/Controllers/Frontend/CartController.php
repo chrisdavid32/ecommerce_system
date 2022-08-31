@@ -8,7 +8,9 @@ use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
+use App\Models\ShipState;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -159,5 +161,17 @@ class CartController extends Controller
         ];
         return redirect()->route('login')->with($notification);
     }
+   }
+
+   public function getDistrict($division_id)
+   {
+    $data = ShipDistrict::where('division_id', $division_id)->get();
+    return response()->json($data);
+   }
+
+   public function getState($district_id)
+   {
+    $data = ShipState::where('district_id', $district_id)->get();
+    return response()->json($data);
    }
 }

@@ -95,6 +95,12 @@ Checkout
                                      @enderror 
                                      </div>
                                 </div>
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">Note <span>*</span></label>
+                                <div class="controls">
+                                <textarea name="note" id="" cols="40" rows="4"></textarea>
+                                </div>
+                            </div>
                           
                           <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
                         </form>
@@ -230,4 +236,48 @@ Checkout
     </div><!-- /.logo-slider -->
     <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
     </div><!-- /.body-content -->
+    <script>
+        
+        $('select[name="division_id"]').on('change', function(){
+            var division_id = $(this).val();
+            // console.log(division_id);
+            if(division_id) {
+                $.ajax({
+                    url: "{{ url('/district/ajax') }}/"+division_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                      $('select[name="state_id"]').html('');
+                       var d =$('select[name="district_id"]').empty();
+                          $.each(data, function(key, value){
+                              $('select[name="district_id"]').append(`<option value="${value.id}">${value.district_name}</option>`);
+                          });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+
+        $('select[name="district_id"]').on('change', function(){
+            var district_id = $(this).val();
+            if(district_id) {
+                $.ajax({
+                    url: "{{ url('/state/ajax') }}/"+district_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                       var d =$('select[name="state_id"]').empty();
+                          $.each(data, function(key, value){
+                              $('select[name="state_id"]').append(`<option value="${value.id}">${value.state_name}</option>`);
+                          });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    </script>
     @endsection
+
+   

@@ -212,6 +212,10 @@ Route::get('/coupon-remove', [CartController::class, 'couponRemove']);
 //checkout route
 Route::get('/checkout', [CartController::class, 'checkoutCreate'])->name('checkout');
 
+Route::get('/district/ajax/{division_id}', [CartController::class, 'getDistrict']);
+
+Route::get('/state/ajax/{district_id}', [CartController::class, 'getState']);
+
 
 
 

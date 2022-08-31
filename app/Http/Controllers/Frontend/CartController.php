@@ -186,7 +186,14 @@ class CartController extends Controller
         'division_id' => $request->division_id,
         'state_id' => $request->state_id,
         'notes' => $request->notes,
-        ''
     ];
+    
+    if($request->payment_method == 'stripe'){
+        return view('frontend.payment.stripe', compact('data'));
+    }elseif($request->payment_method == 'card'){
+        return 'card';
+    }else{
+        return 'cash'; 
+    }
    }
 }

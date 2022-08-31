@@ -23,147 +23,176 @@ Checkout
                     <div class="col-md-8">
                         <div class="panel-group checkout-steps" id="accordion">
                             <!-- checkout-step-01  -->
-    <div class="panel panel-default checkout-step-01">
-      
-        <div id="collapseOne" class="panel-collapse collapse in">
-    
-            <!-- panel-body  -->
-            <div class="panel-body">
-                <h4 class="checkout-subtitle"><strong>Shipping Address</strong></h4>
-                <div class="row">		
-    
-                    <!-- guest-login -->			
-                    <div class="col-md-6 col-sm-6 already-registered-login">
-                       
-                        <form class="register-form" role="form">
-                          <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Shipping Name <span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" name="shipping_name" id="exampleInputEmail1" placeholder="" value="{{auth()->user()->name}}" required>
-                          </div>
-                          <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Shipping Email <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input" name="shipping_email" id="exampleInputEmail1" placeholder="" value="{{auth()->user()->email}}" required>
-                          </div>
-                          <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Shipping Phone <span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" name="shipping_phone" id="exampleInputEmail1" placeholder="" value="{{auth()->user()->phone}}" required>
-                          </div>
-                          <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Post Code <span>*</span></label>
-                            <input type="text" class="form-control unicase-form-control text-input" name="shipping_phone" id="exampleInputEmail1" placeholder="Post Code" required>
-                          </div>
-                    </div>	
-                    <!-- guest-login -->
-    
-                    <!-- already-registered-login -->
-                    <div class="col-md-6 col-sm-6 already-registered-login">
-                            <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Division Select</label>
-                            <div class="controls">
-                             <select name="division_id" class="form-control" id="division_id"  required>
-                              <option value="" selected="" disabled="" required>Select Division</option>
-                             @foreach ($divisions as $division)
-                              <option value="{{ $division->id}}">{{$division->division_name}}</option>   
-                             @endforeach
-                             </select>
-                             @error('division_id') 
-                             <span class="text-danger">{{ $message }}</span>
-                             @enderror 
-                             </div>
-                            </div>
+                            <div class="panel panel-default checkout-step-01">
+                            
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                            
+                                    <!-- panel-body  -->
+                                    <div class="panel-body">
+                                        <h4 class="checkout-subtitle"><strong>Shipping Address</strong></h4>
+                                        <div class="row">		
+                            
+                                            <!-- guest-login -->			
+                                            <div class="col-md-6 col-sm-6 already-registered-login">
+                                            
+                                                <form class="register-form" role="form">
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Shipping Name <span>*</span></label>
+                                                    <input type="text" class="form-control unicase-form-control text-input" name="shipping_name" id="exampleInputEmail1" placeholder="" value="{{auth()->user()->name}}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Shipping Email <span>*</span></label>
+                                                    <input type="email" class="form-control unicase-form-control text-input" name="shipping_email" id="exampleInputEmail1" placeholder="" value="{{auth()->user()->email}}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Shipping Phone <span>*</span></label>
+                                                    <input type="text" class="form-control unicase-form-control text-input" name="shipping_phone" id="exampleInputEmail1" placeholder="" value="{{auth()->user()->phone}}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Post Code <span>*</span></label>
+                                                    <input type="text" class="form-control unicase-form-control text-input" name="shipping_phone" id="exampleInputEmail1" placeholder="Post Code" required>
+                                                </div>
+                                            </div>	
+                                            <!-- guest-login -->
+                            
+                                            <!-- already-registered-login -->
+                                            <div class="col-md-6 col-sm-6 already-registered-login">
+                                                    <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Division Select</label>
+                                                    <div class="controls">
+                                                    <select name="division_id" class="form-control" id="division_id"  required>
+                                                    <option value="" selected="" disabled="" required>Select Division</option>
+                                                    @foreach ($divisions as $division)
+                                                    <option value="{{ $division->id}}">{{$division->division_name}}</option>   
+                                                    @endforeach
+                                                    </select>
+                                                    @error('division_id') 
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror 
+                                                    </div>
+                                                    </div>
 
-                            <div class="form-group">
-                                <label class="info-title" for="exampleInputEmail1">District Select</label>
-                                <div class="controls">
-                                 <select name="district_id" class="form-control" id="district_id" required >
-                                  
-                                 </select>
-                                 @error('district_id') 
-                                 <span class="text-danger">{{ $message }}</span>
-                                 @enderror 
-                                 </div>
-                            </div>
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputEmail1">District Select</label>
+                                                        <div class="controls">
+                                                        <select name="district_id" class="form-control" id="district_id" required >
+                                                        
+                                                        </select>
+                                                        @error('district_id') 
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                        @enderror 
+                                                        </div>
+                                                    </div>
 
-                                <div class="form-group">
-                                    <label class="info-title" for="exampleInputEmail1">State Select</label>
-                                    <div class="controls">
-                                     <select name="state_id" class="form-control" required id="state_id">
-                                      
-                                     </select>
-                                     @error('state_id') 
-                                     <span class="text-danger">{{ $message }}</span>
-                                     @enderror 
-                                     </div>
-                                </div>
-                            <div class="form-group">
-                                <label class="info-title" for="exampleInputEmail1">Note <span>*</span></label>
-                                <div class="controls">
-                                <textarea name="note" id="" cols="40" rows="4"></textarea>
-                                </div>
+                                                        <div class="form-group">
+                                                            <label class="info-title" for="exampleInputEmail1">State Select</label>
+                                                            <div class="controls">
+                                                            <select name="state_id" class="form-control" required id="state_id">
+                                                            
+                                                            </select>
+                                                            @error('state_id') 
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror 
+                                                            </div>
+                                                        </div>
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputEmail1">Note <span>*</span></label>
+                                                        <div class="controls">
+                                                        <textarea name="note" id="" cols="40" rows="4"></textarea>
+                                                        </div>
+                                                    </div>
+                                                
+                                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+                                                </form>
+                                            </div>	
+                                            <!-- already-registered-login -->		
+                            
+                                        </div>			
+                                    </div>
+                                    <!-- panel-body  -->
+                            
+                                </div><!-- row -->
                             </div>
-                          
-                          <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-                        </form>
-                    </div>	
-                    <!-- already-registered-login -->		
-    
-                </div>			
-            </div>
-            <!-- panel-body  -->
-    
-        </div><!-- row -->
-    </div>
     <!-- checkout-step-01  -->
                               
                         </div><!-- /.checkout-steps -->
                     </div>
                     <div class="col-md-4">
                         <!-- checkout-progress-sidebar -->
-    <div class="checkout-progress-sidebar ">
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
-                </div>
-                <div class="">
-                    <ul class="nav nav-checkout-progress list-unstyled">
-                        @foreach ($carts as $item)
-                        <li><strong>Image</strong>
-                        <img src="{{ asset($item->options->image)}}" alt="" style="height: 50px; width:50px;"> 
-                        </li> 
+                        <div class="checkout-progress-sidebar ">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
+                                    </div>
+                                    <div class="">
+                                        <ul class="nav nav-checkout-progress list-unstyled">
+                                            @foreach ($carts as $item)
+                                            <li><strong>Image</strong>
+                                            <img src="{{ asset($item->options->image)}}" alt="" style="height: 50px; width:50px;"> 
+                                            </li> 
 
-                        <li><strong>Qty:</strong>
-                            {{$item->qty}} &nbsp;&nbsp;
-                            
-                            <strong>Color:</strong>
-                            {{$item->options->color}} &nbsp;&nbsp;
+                                            <li><strong>Qty:</strong>
+                                                {{$item->qty}} &nbsp;&nbsp;
+                                                
+                                                <strong>Color:</strong>
+                                                {{$item->options->color}} &nbsp;&nbsp;
 
-                            <strong>Size:</strong>
-                            {{$item->options->size}} &nbsp;&nbsp;
-                        </li> 
-                        @endforeach
-                        <hr>
-                        
-                        @if(Session::has('coupon'))
-                        <strong>SubTotal</strong>{{$cartTotal}} <hr>
+                                                <strong>Size:</strong>
+                                                {{$item->options->size}} &nbsp;&nbsp;
+                                            </li> 
+                                            @endforeach
+                                            <hr>
+                                            
+                                            @if(Session::has('coupon'))
+                                            <strong>SubTotal</strong>{{$cartTotal}} <hr>
 
-                        <strong>Coupon Name:</strong>&nbsp;&nbsp;{{session()->get('coupon')['coupon_name']}} <hr>
-                        @else
-                        <strong>SubTotal:</strong>&nbsp;&nbsp;{{$cartTotal}} <hr>
+                                            <strong>Coupon Name:</strong>&nbsp;&nbsp;{{session()->get('coupon')['coupon_name']}} <hr>
+                                            @else
+                                            <strong>SubTotal:</strong>&nbsp;&nbsp;{{$cartTotal}} <hr>
 
-                        <strong>Grand Total</strong>&nbsp;&nbsp;{{$cartTotal}} <hr>
-                        
-                        @endif
-                       
+                                            <strong>Grand Total</strong>&nbsp;&nbsp;{{$cartTotal}} <hr>
+                                            
+                                            @endif
+                                        
 
-                        <li><a href="#">Shipping Method</a></li>
-                        <li><a href="#">Payment Method</a></li>
-                    </ul>		
-                </div>
-            </div>
-        </div>
-    </div> 
-    <!-- checkout-progress-sidebar -->				</div>
+                                            <li><a href="#">Shipping Method</a></li>
+                                            <li><a href="#">Payment Method</a></li>
+                                        </ul>		
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col-md-4">
+                        <!-- checkout-progress-sidebar -->
+                        <div class="checkout-progress-sidebar ">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="unicase-checkout-title">Payment Method</h4>
+                                    </div>
+                                    <div class="row">
+                                       	<div class="col-md-4">
+                                            <label for="stripe">Stripe</label>
+                                            <input type="radio" name="payment_method" value="stripe">
+                                            <img src="{{asset('payment/3.png')}}" width="50" height="30" alt="">
+                                        </div>	
+                                        <div class="col-md-4">
+                                            <label for="card">Card</label>
+                                            <input type="radio" name="payment_method" value="card">
+                                            <img src="{{asset('payment/1.png')}}" width="50" height="30" alt="">
+                                        </div>	
+                                        <div class="col-md-4">
+                                            <label for="cash">Cash</label>
+                                            <input type="radio" name="payment_method" value="cash">
+                                            <img src="{{asset('payment/2.png')}}" width="50" height="30" alt="">
+                                        </div>	
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
                 </div><!-- /.row -->
             </div><!-- /.checkout-box -->
             <!-- ============================================== BRANDS CAROUSEL ============================================== -->

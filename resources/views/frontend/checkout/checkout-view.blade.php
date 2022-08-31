@@ -51,7 +51,7 @@ Checkout
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1">Post Code <span>*</span></label>
-                                                    <input type="text" class="form-control unicase-form-control text-input" name="shipping_phone" id="exampleInputEmail1" placeholder="Post Code" required>
+                                                    <input type="text" class="form-control unicase-form-control text-input" name="post_code" id="exampleInputEmail1" placeholder="Post Code" required>
                                                 </div>
                                             </div>	
                                             <!-- guest-login -->
@@ -99,7 +99,7 @@ Checkout
                                                     <div class="form-group">
                                                         <label class="info-title" for="exampleInputEmail1">Note <span>*</span></label>
                                                         <div class="controls">
-                                                        <textarea name="note" id="" cols="40" rows="4"></textarea>
+                                                        <textarea name="notes" id="" cols="40" rows="4"></textarea>
                                                         </div>
                                                     </div>
                                                 

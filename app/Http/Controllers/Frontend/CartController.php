@@ -178,7 +178,15 @@ class CartController extends Controller
    public function checkoutStore(Request $request)
    {
     $data = [
+        'shipping_name' => $request->shipping_name,
+        'shipping_email' => $request->shipping_email,
+        'shipping_phone' => $request->shipping_phone,
+        'post_code' => $request->post_code,
+        'district_id' => $request->district_id,
+        'division_id' => $request->division_id,
+        'state_id' => $request->state_id,
+        'notes' => $request->notes,
         ''
-    ]
+    ];
    }
 }

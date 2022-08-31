@@ -1,4 +1,5 @@
 @extends('frontend.master')
+<script src="{{ asset('js/jquery.js') }}"></script>
 
 @section('content')
 
@@ -28,11 +29,12 @@ Checkout
     
             <!-- panel-body  -->
             <div class="panel-body">
+                <h4 class="checkout-subtitle"><strong>Shipping Address</strong></h4>
                 <div class="row">		
     
                     <!-- guest-login -->			
                     <div class="col-md-6 col-sm-6 already-registered-login">
-                        <h4 class="checkout-subtitle"><strong>Shipping Address</strong></h4>
+                       
                         <form class="register-form" role="form">
                           <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">Shipping Name <span>*</span></label>
@@ -50,24 +52,50 @@ Checkout
                             <label class="info-title" for="exampleInputEmail1">Post Code <span>*</span></label>
                             <input type="text" class="form-control unicase-form-control text-input" name="shipping_phone" id="exampleInputEmail1" placeholder="Post Code" required>
                           </div>
-                        </form>
                     </div>	
                     <!-- guest-login -->
     
                     <!-- already-registered-login -->
                     <div class="col-md-6 col-sm-6 already-registered-login">
-                        <h4 class="checkout-subtitle">Already registered?</h4>
-                        <p class="text title-tag-line">Please log in below:</p>
-                        <form class="register-form" role="form">
                             <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="">
-                          </div>
-                          <div class="form-group">
-                            <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-                            <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" placeholder="">
-                            <a href="#" class="forgot-password">Forgot your Password?</a>
-                          </div>
+                            <label class="info-title" for="exampleInputEmail1">Division Select</label>
+                            <div class="controls">
+                             <select name="division_id" class="form-control" id="division_id"  required>
+                              <option value="" selected="" disabled="" required>Select Division</option>
+                             @foreach ($divisions as $division)
+                              <option value="{{ $division->id}}">{{$division->division_name}}</option>   
+                             @endforeach
+                             </select>
+                             @error('division_id') 
+                             <span class="text-danger">{{ $message }}</span>
+                             @enderror 
+                             </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">District Select</label>
+                                <div class="controls">
+                                 <select name="district_id" class="form-control" id="district_id" required >
+                                  
+                                 </select>
+                                 @error('district_id') 
+                                 <span class="text-danger">{{ $message }}</span>
+                                 @enderror 
+                                 </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <label class="info-title" for="exampleInputEmail1">State Select</label>
+                                    <div class="controls">
+                                     <select name="state_id" class="form-control" required id="state_id">
+                                      
+                                     </select>
+                                     @error('state_id') 
+                                     <span class="text-danger">{{ $message }}</span>
+                                     @enderror 
+                                     </div>
+                                </div>
+                          
                           <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
                         </form>
                     </div>	

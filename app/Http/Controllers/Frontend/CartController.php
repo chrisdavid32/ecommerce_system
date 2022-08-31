@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ShipDivision;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -141,7 +142,8 @@ class CartController extends Controller
             $carts = Cart::content();
             $cartQty = Cart::count();
             $cartTotal = Cart::total();
-            return view('frontend.checkout.checkout-view', compact('carts', 'cartQty', 'cartTotal'));
+            $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
+            return view('frontend.checkout.checkout-view', compact('carts', 'cartQty', 'cartTotal', 'divisions'));
         }else{
             $notification = [
                 'message' => 'Item cart is empty',

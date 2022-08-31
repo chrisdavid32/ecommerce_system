@@ -216,6 +216,8 @@ Route::get('/district/ajax/{division_id}', [CartController::class, 'getDistrict'
 
 Route::get('/state/ajax/{district_id}', [CartController::class, 'getState']);
 
+Route::post('checkout-store', [CartController::class, 'checkoutStore'])->name('checkout.store');
+
 
 
 

@@ -174,4 +174,11 @@ class CartController extends Controller
     $data = ShipState::where('district_id', $district_id)->orderBy('state_name', 'ASC')->get();
     return response()->json($data);
    }
+
+   public function checkoutStore(Request $request)
+   {
+    $data = [
+        ''
+    ]
+   }
 }

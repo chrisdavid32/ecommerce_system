@@ -165,13 +165,13 @@ class CartController extends Controller
 
    public function getDistrict($division_id)
    {
-    $data = ShipDistrict::where('division_id', $division_id)->get();
+    $data = ShipDistrict::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
     return response()->json($data);
    }
 
    public function getState($district_id)
    {
-    $data = ShipState::where('district_id', $district_id)->get();
+    $data = ShipState::where('district_id', $district_id)->orderBy('state_name', 'ASC')->get();
     return response()->json($data);
    }
 }

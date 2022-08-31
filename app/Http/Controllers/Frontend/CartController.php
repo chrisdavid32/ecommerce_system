@@ -8,6 +8,9 @@ use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ShipDistrict;
+use App\Models\ShipDivision;
+use App\Models\ShipState;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -141,7 +144,8 @@ class CartController extends Controller
             $carts = Cart::content();
             $cartQty = Cart::count();
             $cartTotal = Cart::total();
-            return view('frontend.checkout.checkout-view', compact('carts', 'cartQty', 'cartTotal'));
+            $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
+            return view('frontend.checkout.checkout-view', compact('carts', 'cartQty', 'cartTotal', 'divisions'));
         }else{
             $notification = [
                 'message' => 'Item cart is empty',
@@ -156,6 +160,40 @@ class CartController extends Controller
             'alert-type' => 'error'
         ];
         return redirect()->route('login')->with($notification);
+    }
+   }
+
+   public function getDistrict($division_id)
+   {
+    $data = ShipDistrict::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
+    return response()->json($data);
+   }
+
+   public function getState($district_id)
+   {
+    $data = ShipState::where('district_id', $district_id)->orderBy('state_name', 'ASC')->get();
+    return response()->json($data);
+   }
+
+   public function checkoutStore(Request $request)
+   {
+    $data = [
+        'shipping_name' => $request->shipping_name,
+        'shipping_email' => $request->shipping_email,
+        'shipping_phone' => $request->shipping_phone,
+        'post_code' => $request->post_code,
+        'district_id' => $request->district_id,
+        'division_id' => $request->division_id,
+        'state_id' => $request->state_id,
+        'notes' => $request->notes,
+    ];
+    
+    if($request->payment_method == 'stripe'){
+        return view('frontend.payment.stripe', compact('data'));
+    }elseif($request->payment_method == 'card'){
+        return 'card';
+    }else{
+        return 'cash'; 
     }
    }
 }

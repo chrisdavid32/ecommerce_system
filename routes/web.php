@@ -159,7 +159,7 @@ Route::group(['prefix'=>'user', 'middleware' => ['user','auth'],'namespace'=>'us
     Route::get('wishlist', [WishlistController::class, 'viewWishlist'])->name('wishlist');
     Route::get('/get-wishlist-product', [WishlistController::class, 'getWishlistProduct']);
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'removeWishlist']);
-    Route::post('/stripe/order', [])->name('stripe.order');
+    Route::post('/stripe/order', [StripeController::class, 'stripeOrder'])->name('stripe.order');
  
 });
 

@@ -7,5 +7,21 @@ use Illuminate\Http\Request;
 
 class StripeController extends Controller
 {
-    //
+    public function stripeOrder(Request $request)
+    {
+
+        \Stripe\Stripe::setApiKey('sk_test_51Ld9VwKrWFLBrgUlcwDMGmmWXvJpjbZH5S5DPJf2HymaCMohiKrcAXDWtWGTSXwjIn8Ekpvv8xVGADI3MHtrZJhk00ZmeXlgz8');
+
+        // Token is created using Checkout or Elements!
+        // Get the payment token ID submitted by the form:
+        $token = $_POST['stripeToken'];
+
+        $charge = \Stripe\Charge::create([
+        'amount' => 999,
+        'currency' => 'usd',
+        'description' => 'Example charge',
+        'source' => $token,
+        'metadata' => ['order_id' => '6735'],
+        ]);
+    }
 }

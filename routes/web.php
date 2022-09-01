@@ -159,6 +159,7 @@ Route::group(['prefix'=>'user', 'middleware' => ['user','auth'],'namespace'=>'us
     Route::get('wishlist', [WishlistController::class, 'viewWishlist'])->name('wishlist');
     Route::get('/get-wishlist-product', [WishlistController::class, 'getWishlistProduct']);
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'removeWishlist']);
+    Route::post('/stripe/order', [])->name('stripe.order');
  
 });
 
@@ -217,6 +218,8 @@ Route::get('/district/ajax/{division_id}', [CartController::class, 'getDistrict'
 Route::get('/state/ajax/{district_id}', [CartController::class, 'getState']);
 
 Route::post('checkout-store', [CartController::class, 'checkoutStore'])->name('checkout.store');
+
+
 
 
 

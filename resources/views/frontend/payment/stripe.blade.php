@@ -90,7 +90,7 @@ Stripe Payment
                                     <div class="panel-heading">
                                         <h4 class="unicase-checkout-title">Payment Method</h4>
                                     </div>
-                                    <form action=" " method="post" id="payment-form">
+                                    <form action="{{route('stripe.order')}}" method="post" id="payment-form">
                                         @csrf
                                     <div class="form-row">
                                         <label for="card-element">

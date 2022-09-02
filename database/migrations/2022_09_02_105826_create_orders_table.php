@@ -22,14 +22,24 @@ class CreateOrdersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->integer('post_code');
-            $table->text('notes');
+            $table->integer('post_code')->nullable();
+            $table->text('notes')->nullable();
             $table->string('payment_type');
-            $table->string('payment_method');
-            $table->integer('transaction_id');
+            $table->string('payment_method')->nullable();
+            $table->string('transaction_id');
             $table->string('currency');
-            $table->string('amount');
-
+            $table->float('amount', 8, 2);
+            $table->string('order_number');
+            $table->string('invoice_no')->nullable();
+            $table->string('order_date')->nullable();
+            $table->string('comfirmed_date')->nullable();
+            $table->string('processded_date')->nullable();
+            $table->string('pick_date')->nullable();
+            $table->string('shipped_date')->nullable();
+            $table->string('cancel_date')->nullable();
+            $table->string('returned_date')->nullable();
+            $table->string('returned_reason')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }

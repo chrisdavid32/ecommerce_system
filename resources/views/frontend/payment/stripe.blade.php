@@ -92,14 +92,14 @@ Stripe Payment
                                     </div>
                                     <form action="{{route('stripe.order')}}" method="post" id="payment-form">
                                         @csrf
-                                        <input type="text" name="shipping_name" value="{{$data['shipping_name']}}">
-                                        <input type="text" name="shipping_email" value="{{$data['shipping_email']}}">
-                                        <input type="text" name="shipping_phone" value="{{$data['shipping_phone']}}">
-                                        <input type="text" name="post_code" value="{{$data['post_code']}}">
-                                        <input type="text" name="district_id" value="{{$data['district_id']}}">
-                                        <input type="text" name="district_id" value="{{$data['division_id']}}">
-                                        <input type="text" name="state_id" value="{{$data['state_id']}}">
-                                        <input type="text" name="notes" value="{{$data['notes']}}">
+                                        <input type="hidden" name="shipping_name" value="{{$data['shipping_name']}}">
+                                        <input type="hidden" name="shipping_email" value="{{$data['shipping_email']}}">
+                                        <input type="hidden" name="shipping_phone" value="{{$data['shipping_phone']}}">
+                                        <input type="hidden" name="post_code" value="{{$data['post_code']}}">
+                                        <input type="hidden" name="district_id" value="{{$data['district_id']}}">
+                                        <input type="hidden" name="district_id" value="{{$data['division_id']}}">
+                                        <input type="hidden" name="state_id" value="{{$data['state_id']}}">
+                                        <input type="hidden" name="notes" value="{{$data['notes']}}">
 
                                     <div class="form-row">
                                         <label for="card-element">

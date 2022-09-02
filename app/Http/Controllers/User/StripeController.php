@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class StripeController extends Controller
 {
     public function stripeOrder(Request $request)
     {
+        if(Session::has('coupon')){
+            $total_amount = Session::get('coupon')['total_amount'];
+        }else{
+            $total_amount = round(Cart::total());
+        }
 
         \Stripe\Stripe::setApiKey('sk_test_51Ld9VwKrWFLBrgUlcwDMGmmWXvJpjbZH5S5DPJf2HymaCMohiKrcAXDWtWGTSXwjIn8Ekpvv8xVGADI3MHtrZJhk00ZmeXlgz8');
 
@@ -17,7 +24,7 @@ class StripeController extends Controller
         $token = $_POST['stripeToken'];
 
         $charge = \Stripe\Charge::create([
-        'amount' => 999 * 100,
+        'amount' => $total_amount * 100,
         'currency' => 'usd',
         'description' => 'Chrisdave Store',
         'source' => $token,

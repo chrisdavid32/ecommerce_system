@@ -177,6 +177,7 @@ class CartController extends Controller
 
    public function checkoutStore(Request $request)
    {
+  
     $data = [
         'shipping_name' => $request->shipping_name,
         'shipping_email' => $request->shipping_email,

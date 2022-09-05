@@ -97,7 +97,7 @@ Stripe Payment
                                         <input type="hidden" name="shipping_phone" value="{{$data['shipping_phone']}}">
                                         <input type="hidden" name="post_code" value="{{$data['post_code']}}">
                                         <input type="hidden" name="district_id" value="{{$data['district_id']}}">
-                                        <input type="hidden" name="district_id" value="{{$data['division_id']}}">
+                                        <input type="hidden" name="division_id" value="{{$data['division_id']}}">
                                         <input type="hidden" name="state_id" value="{{$data['state_id']}}">
                                         <input type="hidden" name="notes" value="{{$data['notes']}}">
 

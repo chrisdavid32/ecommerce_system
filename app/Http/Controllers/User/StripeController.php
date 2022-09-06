@@ -4,11 +4,13 @@ namespace App\Http\Controllers\user;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Mail;
 
 class StripeController extends Controller
 {
@@ -71,6 +73,8 @@ class StripeController extends Controller
             'email' => $invoice->email,
             'amount' => $total_amount,
         ];
+
+        Mail::to($request->shipping_email)->send(new OrderMail($data));
 
         $carts = Cart::content();
         foreach ($carts as $cart) {

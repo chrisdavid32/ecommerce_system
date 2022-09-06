@@ -62,6 +62,16 @@ class StripeController extends Controller
             'status' => 'Pending',
         ]);
 
+        //sending user email after payment
+
+        $invoice = Order::findOrFail($order_id);
+        $data = [
+            'invoice_no' => $invoice->invoice_no,
+            'name' => $invoice->name,
+            'email' => $invoice->email,
+            'amount' => $total_amount,
+        ];
+
         $carts = Cart::content();
         foreach ($carts as $cart) {
            OrderItem::create([

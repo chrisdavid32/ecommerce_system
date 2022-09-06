@@ -11,7 +11,7 @@
             <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
             <li><a href="{{ route('checkout')}}"><i class="icon fa fa-check"></i>Checkout</a></li>
             @auth
-            <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>User Profile</a></li>
+            <li><a href="{{ route('dashboard') }}"><i class="icon fa fa-user"></i>User Profile</a></li>
             @else
             <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a></li>
             @endauth
@@ -22,11 +22,7 @@
         <div class="cnt-block">
           <ul class="list-unstyled list-inline">
             <li class="dropdown dropdown-small"> <a href="" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">USD</a></li>
-                <li><a href="#">INR</a></li>
-                <li><a href="#">GBP</a></li>
-              </ul>
+              
             </li>
             <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">
               @if(session()->get('language') == 'hindi') भाषा @else Language @endif </span><b class="caret"></b></a>
@@ -55,7 +51,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder"> 
           <!-- ============================================================= LOGO ============================================================= -->
-          <div class="logo"> <a href="home.html"> <img src="{{ asset('frontend/assets/images/logo.png')}}" alt="logo"> </a> </div>
+          <div class="logo"> <a href="{{ url('/')}}"> <img src="{{ asset('frontend/assets/images/logo.png')}}" alt="logo"> </a> </div>
           <!-- /.logo --> 
           <!-- ============================================================= LOGO : END ============================================================= --> </div>
         <!-- /.logo-holder -->

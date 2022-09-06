@@ -22,11 +22,7 @@
         <div class="cnt-block">
           <ul class="list-unstyled list-inline">
             <li class="dropdown dropdown-small"> <a href="" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">USD</a></li>
-                <li><a href="#">INR</a></li>
-                <li><a href="#">GBP</a></li>
-              </ul>
+              
             </li>
             <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">
               @if(session()->get('language') == 'hindi') भाषा @else Language @endif </span><b class="caret"></b></a>
@@ -55,7 +51,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder"> 
           <!-- ============================================================= LOGO ============================================================= -->
-          <div class="logo"> <a href="home.html"> <img src="{{ asset('frontend/assets/images/logo.png')}}" alt="logo"> </a> </div>
+          <div class="logo"> <a href="{{ url('/')}}"> <img src="{{ asset('frontend/assets/images/logo.png')}}" alt="logo"> </a> </div>
           <!-- /.logo --> 
           <!-- ============================================================= LOGO : END ============================================================= --> </div>
         <!-- /.logo-holder -->

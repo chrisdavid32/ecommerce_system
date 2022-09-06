@@ -29,6 +29,6 @@ public $data;
     public function build()
     {
         $order = $this->data;
-        return $this->from('chrisdave@support.com')->view('mail.order_mail', compact('order'));
+        return $this->from('chrisdave@support.com')->view('mail.order_mail', compact('order'))->subject('Email from Chrisdave Shop');
     }
 }

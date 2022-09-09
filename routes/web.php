@@ -6,6 +6,7 @@ use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AllUserController;
 use App\Http\Controllers\user\StripeController;
 use App\Http\Controllers\Backend\brandController;
 use App\Http\Controllers\Frontend\CartController;
@@ -162,6 +163,7 @@ Route::group(['prefix'=>'user', 'middleware' => ['user','auth'],'namespace'=>'us
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'removeWishlist']);
     Route::post('/stripe/order', [StripeController::class, 'stripeOrder'])->name('stripe.order');
     Route::get('/order-list', [AllUserController::class, 'orderList'])->name('order.list');
+    Route::get('order-details/{order_id}', [AllUserController::class, 'orderDetails']);
 });
 
 Route::get('/user/mycart', [CartPageController::class, 'viewCart'])->name('mycart');

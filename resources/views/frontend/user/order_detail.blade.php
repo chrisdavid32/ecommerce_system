@@ -112,6 +112,70 @@
             </div>
 
          </div>
+
+         <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr style="background: #e2e2e2;">
+                                <td class="col-md-1">
+                                    <label for="">Image</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Product Name</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Product Code</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Color</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Size</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Quantity</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Price</label>
+                                </td>
+                            </tr>
+    
+                            @foreach ($order_item as $item)
+                            <tr>
+                                <td class="col-md-1">
+                                    <label for=""><img src="{{asset($item->product->product_thumbnail)}}" height="50px;" width="50px" alt=""> </label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">{{ $item->product->product_name_en }}</label>
+                                </td>
+                                <td class="col-md-1">
+                                    <label for="">{{$item->product->product_code}}</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">{{$item->color}}</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">{{$item->size}}</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">{{$item->qty}}</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">{{$item->price * $item->qty}}</label>
+                                </td>
+                                
+                            </tr> 
+                            @endforeach
+                        </tbody>
+                    </table>
+    
+                </div>
+    
+               </div>
+
+         </div>
         </div>
 
     </div>

@@ -116,13 +116,13 @@
         </td>
         <td align="center">{{ $item->product->product_name_en }}</td>
         <td align="center">
-            
+           {{ $item->size ?? '-'}} 
         </td>
-        <td align="center">{{$item->color}}</td>
-        <td align="center">{{$item->product->product_code}}</td>
+        <td align="center">{{$item->color ?? '-'}}</td>
+        <td align="center">{{$item->product->product_code ?? '-'}}</td>
         <td align="center">{{$item->qty}}</td>
-        <td align="center">price Tk</td>
-        <td align="center">price Tk</td>
+        <td align="center">{{ $item->price }}</td>
+        <td align="center">{{$item->price * $item->qty}}</td>
       </tr>
     @endforeach
     </tbody>
@@ -131,9 +131,9 @@
   <table width="100%" style=" padding:0 10px 0 10px;">
     <tr>
         <td align="right" >
-            <h2><span style="color: green;">Subtotal:</span> Subtotal tk</h2>
-            <h2><span style="color: green;">Total:</span> Total tk</h2>
-            {{-- <h2><span style="color: green;">Full Payment PAID</h2> --}}
+            <h2><span style="color: green;">Subtotal:</span> {{ $order->amount}}</h2>
+            <h2><span style="color: green;">Total:</span>{{ $order->amount}} </h2>
+            <h2><span style="color: green;">Full Payment PAID</h2>
         </td>
     </tr>
   </table>

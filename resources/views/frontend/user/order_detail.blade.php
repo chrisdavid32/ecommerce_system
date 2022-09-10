@@ -112,6 +112,74 @@
             </div>
 
          </div>
+
+         <div class="row">
+            <div class="col-md-8">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr style="background: #e2e2e2;">
+                                <td class="col-md-1">
+                                    <label for="">Image</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Product Name</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Product Code</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Color</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Size</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Quantity</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Price</label>
+                                </td>
+                                <td class="col-md-4">
+                                    <label for="">Action</label>
+                                </td>
+                            </tr>
+    
+                            @foreach ($order_item as $item)
+                            <tr>
+                                <td class="col-md-1">
+                                    <label for=""><img src="{{asset}}" alt=""> </label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">{{ number_format($order->amount) }}</label>
+                                </td>
+                                <td class="col-md-1">
+                                    <label for="">{{$order->payment_type}}</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">{{$order->invoice_no}}</label>
+                                </td>
+                                <td class="col-md-2">
+                                   
+                                    <label for="">
+                                        <span class="badge badge-pill badge-warning" style="background-color: #418DB9;">{{$order->status}}
+                                        </span></label>
+                                </td>
+                                <td class="col-md-3">
+                                   <a href="{{url('user/order-details/'.$order->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>View</a>&nbsp; &nbsp;
+                                   <a href="" class="btn btn-sm btn-success"><i class="fa fa-download"></i>Invoice</a>
+    
+                                </td>
+                            </tr> 
+                            @endforeach
+                        </tbody>
+                    </table>
+    
+                </div>
+    
+               </div>
+
+         </div>
         </div>
 
     </div>

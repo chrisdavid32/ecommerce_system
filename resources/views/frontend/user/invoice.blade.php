@@ -48,14 +48,14 @@
     <tr>
         <td valign="top">
           <!-- {{-- <img src="" alt="" width="150"/> --}} -->
-          <h2 style="color: green; font-size: 26px;"><strong>EasyShop</strong></h2>
+          <h2 style="color: green; font-size: 26px;"><strong>{{ config('app.name') }}</strong></h2>
         </td>
         <td align="right">
             <pre class="font" >
-               EasyShop Head Office
-               Email:support@easylearningbd.com <br>
-               Mob: 1245454545 <br>
-               Dhaka 1207,Dhanmondi:#4 <br>
+                {{ config('app.name') }}
+               Email:chrisdavid3271@gmail.com <br>
+               Mobile: +2347035202925 <br>
+               Lagos, Nigeria <br>
               
             </pre>
         </td>
@@ -70,20 +70,20 @@
     <tr>
         <td>
           <p class="font" style="margin-left: 20px;">
-           <strong>Name:</strong> Name <br>
-           <strong>Email:</strong> Email <br>
-           <strong>Phone:</strong> Phone <br>
+           <strong>Name:</strong> {{ $order->name}} <br>
+           <strong>Email:</strong> {{ $order->email}} <br>
+           <strong>Phone:</strong> {{ $order->phone}} <br>
             
-           <strong>Address:</strong> Address <br>
-           <strong>Post Code:</strong> Post Code
+           <strong>Address:</strong> {{ $order->division->division_name}}, {{$order->district->district_name}}, {{$order->state->state_name}} <br>
+           <strong>Post Code:</strong> {{ $order->post_code}}
          </p>
         </td>
         <td>
           <p class="font">
-            <h3><span style="color: green;">Invoice:</span> #Invoice</h3>
-            Order Date: Order Date <br>
-             Delivery Date: Delivery Date <br>
-            Payment Type : Payment Type </span>
+            <h3><span style="color: green;">Invoice:</span> {{ $order->order_number}}</h3>
+            Order Date: {{ $order->order_date}} <br>
+             Delivery Date: {{ $order->comfirmed_date}} <br>
+            Payment Type : {{ $order->payment_method}} </span>
          </p>
         </td>
     </tr>
@@ -107,22 +107,24 @@
     </thead>
     <tbody>
 
+     @foreach ($order_item as $item)
+         
      
       <tr class="font">
         <td align="center">
-            <img src=" " height="60px;" width="60px;" alt="">
+            <img src="{{asset($item->product->product_thumbnail)}}" height="60px;" width="60px;" alt="">
         </td>
-        <td align="center">product_name_en</td>
+        <td align="center">{{ $item->product->product_name_en }}</td>
         <td align="center">
             
         </td>
-        <td align="center">color</td>
-        <td align="center">product_code</td>
-        <td align="center">qty</td>
+        <td align="center">{{$item->color}}</td>
+        <td align="center">{{$item->product->product_code}}</td>
+        <td align="center">{{$item->qty}}</td>
         <td align="center">price Tk</td>
         <td align="center">price Tk</td>
       </tr>
-      
+    @endforeach
     </tbody>
   </table>
   <br>

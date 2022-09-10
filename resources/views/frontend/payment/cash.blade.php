@@ -64,7 +64,7 @@ Cash on Delivery
                                     <div class="panel-heading">
                                         <h4 class="unicase-checkout-title">Payment Method</h4>
                                     </div>
-                                    <form action="{{route('stripe.order')}}" method="post" id="payment-form">
+                                    <form action="{{route('cash.order')}}" method="post" id="payment-form">
                                         
                                         @csrf
 
